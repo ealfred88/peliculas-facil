@@ -1,0 +1,232 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_Kr6LMU": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_zDWNnx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/fullbanner-desktop-peliculas-01.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_Tjea4g": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/fullbanner-desktop-peliculas-02.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_zDWNnx",
+        "slide_Tjea4g"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "adapt_image",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Apresentação de slides sobre nossa marca"
+      }
+    },
+    "image_banner": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify://shop_images/banner-comparativo-pelicula.png",
+        "image_overlay_opacity": 40,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "collection_list_8MPCbd": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_dXYzYk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "peliculas-automotivas"
+          }
+        },
+        "featured_collection_WVEfM3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pelicula-residencial"
+          }
+        },
+        "featured_collection_8Bk8JY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "protecao-de-pintura-ppf"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_dXYzYk",
+        "featured_collection_WVEfM3",
+        "featured_collection_8Bk8JY"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_A4dmTf": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_RrHhrr": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/bloco-video-01.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_AfKFUR": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/bloco-video-02.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_TdjLBW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/bloco-video-03.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_tx8zmE": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/bloco-video-04.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_RrHhrr",
+        "column_AfKFUR",
+        "column_TdjLBW",
+        "column_tx8zmE"
+      ],
+      "custom_css": [
+        ".multicolumn .title-wrapper-with-link {justify-content: center;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Veja como nosso produto é aplicado",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Destaques",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "slideshow_Kr6LMU",
+    "image_banner",
+    "collection_list_8MPCbd",
+    "multicolumn_A4dmTf",
+    "featured_collection"
+  ]
+}

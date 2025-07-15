@@ -68,13 +68,13 @@
           >
             <div class="footer-block grid__item footer-block--menu scroll-trigger animate--slide-in">
               <img src="{{ 'logo-peliculas-branco.svg' | asset_url }}" width="315" height="60" alt="{{ shop.name | escape }}" class="footer__logo" loading="lazy">
-              <span class="footer__logo-caption">
+              <p class="footer__logo-caption">
                 A sua fonte confiável para produtos automotivos de alta qualidade!
-              </span>
+              </p>
               <div class="social-wrapper">
-                {%- if block.settings.show_social and has_social_icons -%}
-                  {%- render 'social-icons', class: 'footer__list-social' -%}
-                {%- endif -%}
+                {% if block.settings.show_social and has_social_icons %}
+                  {% render 'social-icons', class: 'footer__list-social' %}
+                {% endif %}
               </div>
             </div>
             {%- for block in section.blocks -%}
@@ -330,8 +330,9 @@
       </div>
     </div>
   </div>
-  {% render 'snippet-teste' %}
 </footer>
+
+{% render 'snippet-teste' %}
 
 {% schema %}
 {

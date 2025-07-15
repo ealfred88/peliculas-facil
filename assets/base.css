@@ -705,6 +705,10 @@ summary::-webkit-details-marker {
   width: 100%;
 }
 
+.video-player {
+  max-width: 100%;
+}
+
 /* base-focus */
 /*
   Focus ring - default (with offset)

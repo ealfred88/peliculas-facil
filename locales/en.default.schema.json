@@ -1172,6 +1172,9 @@
         "image_overlay_opacity": {
           "label": "Overlay opacity"
         },
+        "link_banner": {
+          "label": "Banner link"
+        },
         "image_height": {
           "label": "Height",
           "options__1": {

@@ -1171,6 +1171,11 @@ deferred-media {
   display: block;
 }
 
+.banner__media a {
+  text-align: center;
+  z-index: 3;
+}
+
 /* component-button */
 /* Button - default */
 

@@ -1,0 +1,29 @@
+<div class="snippet-teste">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h2>Snippet Teste</h2>
+      </div>
+      <div class="col-6">
+        <img src="{{ 'produto-destaque-ppf.jpg' | asset_url }}" width="712" height="758" alt="Películas" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="busca-aberta">
+          <form action="/search" method="get" role="search">
+            <input type="search" name="q" placeholder="Pesquisar na loja..." aria-label="Campo de busca" value="{{ search.terms | escape }}" />
+            <button type="submit" aria-label="Buscar">
+              <span>🔍</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        {% render 'header-search', input_id: 'snippet-teste'%}
+      </div>
+    </div>
+  </div>
+</div>

@@ -70,6 +70,7 @@
           assign sizes = full_width
         endif
       -%}
+      <a href="{{ section.settings.banner_link_1 }}">
       {{
         section.settings.image
         | image_url: width: 3840
@@ -81,6 +82,7 @@
           widths: widths,
           fetchpriority: fetch_priority
       }}
+      </a>
     </div>
   {%- elsif section.settings.image_2 == blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -242,6 +244,11 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
+    },
+    {
+      "type": "url",
+      "id": "banner_link_1",
+      "label": "t:sections.image-banner.settings.link_banner.label"
     },
     {
       "type": "header",

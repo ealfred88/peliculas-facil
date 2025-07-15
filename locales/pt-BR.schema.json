@@ -1026,6 +1026,9 @@
         "show_text_below": {
           "label": "Recipiente"
         },
+        "link_banner": {
+          "label": "Link do banner"
+        },
         "image_height": {
           "label": "Altura",
           "options__1": {

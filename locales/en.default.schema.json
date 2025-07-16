@@ -2598,6 +2598,30 @@
         "name": "Multicolumn"
       }
     },
+    "multicolumn-video": {
+      "name": "Multicolumn Video",
+      "settings": {
+        "title": {
+          "label": "Heading",
+          "default": "Multicolumn Video"
+        },
+        "header_text": {
+          "content": "Heading"
+        },
+        "header_image": {
+          "content": "Image"
+        },
+        "header_layout": {
+          "content": "Layout"
+        },
+        "header_button": {
+          "content": "Button"
+        },
+      "presets": {
+        "name": "Multicolumn Video"
+        }
+      }
+    },
     "newsletter": {
       "name": "Email signup",
       "settings": {

@@ -2270,6 +2270,19 @@
         "name": "Multicoluna"
       }
     },
+    "multicolumn-video": {
+      "name": "Multicoluna Vídeo",
+      "settings": {
+        "title": {
+          "label": "Título",
+          "default": "Várias colunas vídeo"
+        }
+      },
+      "presets": {
+        "name": "Multicoluna vídeo"
+      }
+    }
+    },
     "newsletter": {
       "name": "Assinante de e-mail",
       "settings": {

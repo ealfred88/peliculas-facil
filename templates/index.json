@@ -65,13 +65,84 @@
         "accessibility_info": "Apresentação de slides sobre nossa marca"
       }
     },
+    "featured_product_APb9aQ": {
+      "type": "featured-product",
+      "blocks": {
+        "text_pcwxih": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_ayNffx": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price_UCTTaR": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_cktBJq": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_wnXDdA": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_9jjaQN": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_LLAWCb": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartilhar"
+          }
+        }
+      },
+      "block_order": [
+        "text_pcwxih",
+        "title_ayNffx",
+        "price_UCTTaR",
+        "variant_picker_cktBJq",
+        "quantity_selector_wnXDdA",
+        "buy_buttons_9jjaQN",
+        "share_LLAWCb"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "pelicula-filme-nano-ceramica-automotiva-termica",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "settings": {
         "image": "shopify://shop_images/banner-comparativo-pelicula.png",
-        "image_overlay_opacity": 40,
+        "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "banner_link_1": "shopify://collections/peliculas-automotivas",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
@@ -108,6 +179,10 @@
         "featured_collection_WVEfM3",
         "featured_collection_8Bk8JY"
       ],
+      "custom_css": [
+        ".card > .card__content {position: absolute; z-index: 3; display: flex; justify-content: center; bottom: 0;}",
+        ".card__heading .full-unstyled-link {color: #fff;}"
+      ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "",
@@ -122,73 +197,224 @@
         "padding_bottom": 36
       }
     },
-    "multicolumn_A4dmTf": {
-      "type": "multicolumn",
+    "multicolumn_video_tQgNmN": {
+      "type": "multicolumn-video",
+      "custom_css": [
+        ".multicolumn-video .title-wrapper-with-link {justify-content: center;}"
+      ],
+      "name": "t:sections.multicolumn-video.presets.name",
+      "settings": {
+        "title": "Veja como nosso produto é aplicado",
+        "heading_size": "h2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_RVbW8W": {
+      "type": "image-banner",
       "blocks": {
-        "column_RrHhrr": {
-          "type": "column",
+        "heading_g3hni6": {
+          "type": "heading",
           "settings": {
-            "image": "shopify://shop_images/bloco-video-01.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_AfKFUR": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/bloco-video-02.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_TdjLBW": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/bloco-video-03.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_tx8zmE": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/bloco-video-04.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
+            "heading": "Películas Residenciais",
+            "heading_size": "h1"
           }
         }
       },
       "block_order": [
-        "column_RrHhrr",
-        "column_AfKFUR",
-        "column_TdjLBW",
-        "column_tx8zmE"
+        "heading_g3hni6"
       ],
       "custom_css": [
-        ".multicolumn .title-wrapper-with-link {justify-content: center;}"
+        ".banner__content {z-index: 4;}",
+        ".banner__heading {color: #fff; font-size: 28px; text-transform: uppercase; letter-spacing: 12px;}"
       ],
-      "name": "t:sections.multicolumn.presets.name",
+      "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "title": "Veja como nosso produto é aplicado",
-        "heading_size": "h2",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "left",
-        "background_style": "none",
+        "image": "shopify://shop_images/banner-pelicula-residencial.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "banner_link_1": "",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
         "color_scheme": "",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "featured_product_wx64F6": {
+      "type": "featured-product",
+      "blocks": {
+        "text_dgTLTk": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_BXUp66": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price_Kk33p8": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_iRyLUq": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_yPrQXc": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_wNxV8y": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_m9wKry": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartilhar"
+          }
+        }
+      },
+      "block_order": [
+        "text_dgTLTk",
+        "title_BXUp66",
+        "price_Kk33p8",
+        "variant_picker_iRyLUq",
+        "quantity_selector_yPrQXc",
+        "buy_buttons_wNxV8y",
+        "share_m9wKry"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "pelicula-nano-ceramica-c-reducao-de-calor-g70-rolo-152cm-de-largura",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_XjrzKR": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_yB9gfq": {
+          "type": "heading",
+          "settings": {
+            "heading": "Proteção de Pintura (PPF)",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_yB9gfq"
+      ],
+      "custom_css": [
+        ".banner__content {z-index: 4;}",
+        ".banner__heading {color: #fff; font-size: 28px; text-transform: uppercase; letter-spacing: 12px;}",
+        ".banner__box {max-width: 100%;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/banner-ppf.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "banner_link_1": "",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "featured_product_MKqRX8": {
+      "type": "featured-product",
+      "blocks": {
+        "text_da9EjH": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_AiMLgM": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price_rmY9gg": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_QVLpNe": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_TniHWp": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_89EaJP": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_d6X9dt": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartilhar"
+          }
+        }
+      },
+      "block_order": [
+        "text_da9EjH",
+        "title_AiMLgM",
+        "price_rmY9gg",
+        "variant_picker_QVLpNe",
+        "quantity_selector_TniHWp",
+        "buy_buttons_89EaJP",
+        "share_d6X9dt"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "ppf-brilho-regenerativo-tpu-protecao-de-pintura-larg-1-52m",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -197,7 +423,7 @@
       "type": "featured-collection",
       "settings": {
         "collection": "all",
-        "products_to_show": 8,
+        "products_to_show": 4,
         "title": "Destaques",
         "heading_size": "h2",
         "description": "",
@@ -224,9 +450,14 @@
   },
   "order": [
     "slideshow_Kr6LMU",
+    "featured_product_APb9aQ",
     "image_banner",
     "collection_list_8MPCbd",
-    "multicolumn_A4dmTf",
+    "multicolumn_video_tQgNmN",
+    "image_banner_RVbW8W",
+    "featured_product_wx64F6",
+    "image_banner_XjrzKR",
+    "featured_product_MKqRX8",
     "featured_collection"
   ]
 }

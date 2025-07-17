@@ -3105,6 +3105,10 @@
             "image": {
               "label": "Image"
             },
+            "banner_link": {
+              "label": "URL",
+              "info": "Banner link URL"
+            },
             "heading": {
               "label": "Heading",
               "default": "Image slide"

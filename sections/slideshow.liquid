@@ -136,6 +136,13 @@
                 assign fetch_priority = 'high'
               endif
             -%}
+            <a class="slideshow__link banner__link"
+              {% if block.settings.banner_link %}
+                href="{{ block.settings.banner_link }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+            >
             {%- if forloop.first %}
               {{
                 block.settings.image
@@ -149,6 +156,7 @@
                 | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths
               }}
             {%- endif -%}
+            </a>
           {%- else -%}
             {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
             {%- if placeholder_slide == 1 -%}
@@ -404,6 +412,11 @@
           "unit": "%",
           "label": "t:sections.slideshow.blocks.slide.settings.image_overlay_opacity.label",
           "default": 0
+        },
+        {
+          "type": "url",
+          "id": "banner_link",
+          "label": "t:sections.slideshow.blocks.slide.settings.banner_link.label"
         },
         {
           "type": "header",

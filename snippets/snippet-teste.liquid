@@ -1,29 +1,13 @@
 {%- style -%}
-  img-comparison-slider,
-  img-comparison-slider img {
-    max-width: 100%;
-    height: auto;
-  }
+.title-snippet {
+  font-size: 1.5rem;
+}
 {%- endstyle -%}
 <div class="snippet-teste">
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <h2>Snippet Teste</h2>
-      </div>
-      <div class="col-12">
-        <script
-          defer
-          src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
-        ></script>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
-        />
-        <img-comparison-slider>
-          <img slot="first" src="{{ 'compara-slider-01.jpg' | asset_url }}" width="1800" height="600"/>
-          <img slot="second" src="{{ 'compara-slider-02.jpg' | asset_url }}" width="1800" height="600"/>
-        </img-comparison-slider>
+        <h2 class="title__snippet">Snippet Teste</h2>
       </div>
     </div>
     <div class="row">

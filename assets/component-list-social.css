@@ -10,9 +10,13 @@
   }
 }
 
+.list-social__item .svg-wrapper {
+  width: 32px;
+  height: 32px;
+}
 .list-social__item .icon {
-  height: 2.2rem;
-  width: 2.2rem;
+  height: 32px;
+  width: 32px;
 }
 
 .list-social__link {

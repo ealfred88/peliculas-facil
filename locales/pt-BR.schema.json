@@ -2270,19 +2270,6 @@
         "name": "Multicoluna"
       }
     },
-    "multicolumn-video": {
-      "name": "Multicoluna Vídeo",
-      "settings": {
-        "title": {
-          "label": "Título",
-          "default": "Várias colunas vídeo"
-        }
-      },
-      "presets": {
-        "name": "Multicoluna vídeo"
-      }
-    }
-    },
     "newsletter": {
       "name": "Assinante de e-mail",
       "settings": {
@@ -2851,6 +2838,10 @@
           "settings": {
             "image": {
               "label": "Imagem"
+            },
+            "banner_link": {
+              "label": "URL",
+              "info": "Link do banner"
             },
             "heading": {
               "label": "Título",

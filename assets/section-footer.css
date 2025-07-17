@@ -11,6 +11,76 @@
   display: block;
 }
 
+.footer__blocks-wrapper {
+  --grid-desktop-horizontal-spacing: 25px;
+}
+.footer__logo {
+  max-width: 260px;
+  height: auto;
+}
+.footer__logo-caption {
+  font-size: 14px;
+  font-weight: 300;
+}
+.footer-block__details-content .link {
+  font-weight: 300;
+}
+.seal-wrapper {
+  background-color: #333;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  height: 100%;
+}
+.seal-wrapper img {
+  max-width: 100%;
+  height: auto;
+}
+.footer__info {
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.footer__info a {
+  color: rgb(255 255 255 / 75%);
+  text-decoration: none;
+}
+.footer__info a:hover {
+  color: rgb(255 255 255 / 100%);
+  text-decoration: underline;
+}
+.footer__info--time::before {
+  content: url('./i-clock.svg');
+  display: inline-block;
+  margin-right: 10px;
+}
+.footer__info--phone::before {
+  content: url('./i-phone.svg');
+  display: inline-block;
+  margin-right: 10px;
+}
+.footer__info--mail::before {
+  content: url('./i-mail.svg');
+  display: inline-block;
+  margin-right: 10px;
+}
+.footer__content-uptop .footer__column-payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #424242;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 40px;
+}
+.list-payment__item .icon {
+  width: 60px;
+  height: auto;
+}
+
+
 @media screen and (max-width: 749px) {
   .footer .grid {
     display: block;
@@ -42,7 +112,6 @@
 
 .footer__content-bottom {
   border-top: solid 0.1rem rgba(var(--color-foreground), 0.08);
-  padding-top: 3rem;
 }
 
 .footer__content-bottom:only-child {
@@ -51,7 +120,9 @@
 
 .footer__content-bottom-wrapper {
   display: flex;
+  justify-content: center;
   width: 100%;
+  background-color: #215AA8;
 }
 
 @media screen and (max-width: 749px) {
@@ -172,7 +243,7 @@
 }
 
 .footer__list-social.list-social:only-child {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .footer-block__newsletter {
@@ -282,7 +353,7 @@
 
 @media screen and (min-width: 750px) {
   .footer__payment {
-    margin-top: 1.5rem;
+
   }
 }
 
@@ -292,7 +363,7 @@
 
 .footer__copyright {
   text-align: center;
-  margin-top: 1.5rem;
+  padding: 7px 0;
 }
 
 @media screen and (min-width: 750px) {

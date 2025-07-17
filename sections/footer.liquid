@@ -9,7 +9,6 @@
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
   }
-
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -49,6 +48,22 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
+      <div class="footer__content-uptop container">
+        <div class="footer__column footer__column-payment">
+          {%- if section.settings.payment_enable -%}
+            <div class="footer__payment">
+              <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+              <ul class="list list-payment" role="list">
+                {%- for type in shop.enabled_payment_types -%}
+                  <li class="list-payment__item">
+                    {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
       <div class="footer__content-top container">
         {%- if section.blocks.size > 0 -%}
           {%- liquid
@@ -167,6 +182,44 @@
                 {%- endcase -%}
               </div>
             {%- endfor -%}
+            <div class="footer-block grid__item footer-block--menu scroll-trigger animate--slide-in">
+              <h2 class="footer-block__heading inline-richtext">
+                Central de Atendimento
+              </h2>
+              <div class="footer__info footer__info--time">
+                De Seg. à Sex. das 08h00 às 18h00
+              </div>
+              <div class="footer__info footer__info--phone">
+                <a href="tel:+5562981292873">
+                  (62) 98129-2873
+                </a>
+              </div>
+              <div class="footer__info footer__info--mail">
+                <a href="mailto:contato@peliculasfacil.com.br">
+                  contato@peliculasfacil.com.br
+                </a>
+              </div>
+              <h2 class="footer-block__heading inline-richtext mt-4">
+                Loja verificada
+              </h2>
+              <div class="row">
+                <div class="col-lg-4">
+                  <a href="https://transparencyreport.google.com/safe-browsing/search?url=https://peliculasfacil.com.br/" target="_blank" class="seal-wrapper">
+                    <img src="{{ 'google-site-seguro.svg' | asset_url }}" width="110" height="40" alt="Google Site Seguro" class="seal__google" loading="lazy">
+                  </a>
+                </div>
+                <div class="col-lg-4">
+                  <a href="https://www.reclameaqui.com.br/empresa/globaltek-window-films-importacao-e-distribuicao/" target="_blank" class="seal-wrapper">
+                    <img src="{{ 'reclame-aqui.svg' | asset_url }}" width="90" height="37" alt="Reclame Aqui" class="seal__reclame" loading="lazy">
+                  </a>
+                </div>
+                <div class="col-lg-4">
+                  <a href="https://www.sslshopper.com/ssl-checker.html#hostname=https://peliculasfacil.com.br/" target="_blank" class="seal-wrapper">
+                    <img src="{{ 'selo-ssl.svg' | asset_url }}" width="80" height="38" alt="Site Seguro SSL" class="seal__ssl" loading="lazy">
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         {%- endif -%}
 
@@ -290,22 +343,8 @@
           </localization-form>
         {%- endif -%}
       </div>
-      <div class="footer__column footer__column--info">
-        {%- if section.settings.payment_enable -%}
-          <div class="footer__payment">
-            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-            <ul class="list list-payment" role="list">
-              {%- for type in shop.enabled_payment_types -%}
-                <li class="list-payment__item">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-      </div>
     </div>
-    <div class="footer__content-bottom-wrapper container{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+    <div class="footer__content-bottom-wrapper container-fluid{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}

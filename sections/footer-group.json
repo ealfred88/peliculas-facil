@@ -11,12 +11,69 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "newsletter_c4kcai": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_NdnVG9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Receba nossas novidades",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph_cGATMT": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Cadastre-se e fique por dentro dos nossos lançamentos e ofertas!</p>"
+          }
+        },
+        "email_form_V4ciUa": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_NdnVG9",
+        "paragraph_cGATMT",
+        "email_form_V4ciUa"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_JYxCyA": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Links rápidos",
+            "menu": "footer"
+          }
+        },
+        "link_list_yhzcty": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Links rápidos",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_JYxCyA",
+        "link_list_yhzcty"
+      ],
+      "custom_css": [
+        ".footer {border-top-left-radius: 30px; border-top-right-radius: 30px;}"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "color_scheme": "scheme-4",
+        "newsletter_enable": false,
+        "newsletter_heading": "Receba nossas novidades",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
@@ -30,6 +87,7 @@
     }
   },
   "order": [
+    "newsletter_c4kcai",
     "footer"
   ]
 }

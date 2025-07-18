@@ -8,6 +8,9 @@
 .card {
   text-decoration: none;
   text-align: var(--text-alignment);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .card:not(.ratio) {
@@ -424,8 +427,8 @@
 }
 
 .card--standard > .card__content .card__information {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .card--card.card--media .card__inner .card__information,

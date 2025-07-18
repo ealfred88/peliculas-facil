@@ -17,6 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/fullbanner-desktop-peliculas-01.jpg",
             "image_overlay_opacity": 0,
+            "banner_link": "shopify://collections/peliculas-automotivas",
             "heading": "",
             "heading_size": "h1",
             "subheading": "",
@@ -35,6 +36,7 @@
           "settings": {
             "image": "shopify://shop_images/fullbanner-desktop-peliculas-02.jpg",
             "image_overlay_opacity": 0,
+            "banner_link": "shopify://collections/pelicula-residencial",
             "heading": "",
             "heading_size": "h1",
             "subheading": "",
@@ -135,21 +137,14 @@
         "padding_bottom": 36
       }
     },
-    "image_banner": {
-      "type": "image-banner",
+    "custom_liquid_hyaerH": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "image": "shopify://shop_images/banner-comparativo-pelicula.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "banner_link_1": "shopify://collections/peliculas-automotivas",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "custom_liquid": "{% render 'comparison-slider' %}",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "collection_list_8MPCbd": {
@@ -451,7 +446,7 @@
   "order": [
     "slideshow_Kr6LMU",
     "featured_product_APb9aQ",
-    "image_banner",
+    "custom_liquid_hyaerH",
     "collection_list_8MPCbd",
     "multicolumn_video_tQgNmN",
     "image_banner_RVbW8W",

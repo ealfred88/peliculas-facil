@@ -1771,6 +1771,9 @@
         },
         "show_collection_image": {
           "label": "Image"
+        },
+        "collection_image_top": {
+          "label": "Top Image"
         }
       }
     },
@@ -2617,10 +2620,10 @@
         "header_button": {
           "content": "Button"
         },
+      },
       "presets": {
         "name": "Multicolumn Video"
         }
-      }
     },
     "newsletter": {
       "name": "Email signup",

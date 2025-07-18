@@ -2839,10 +2839,6 @@
             "image": {
               "label": "Imagem"
             },
-            "banner_link": {
-              "label": "URL",
-              "info": "Link do banner"
-            },
             "heading": {
               "label": "Título",
               "default": "Slide de imagem"

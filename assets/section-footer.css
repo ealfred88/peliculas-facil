@@ -12,10 +12,11 @@
 }
 
 .footer__blocks-wrapper {
-  --grid-desktop-horizontal-spacing: 25px;
+  --grid-desktop-horizontal-spacing: 40px;
 }
 .footer__logo {
-  max-width: 260px;
+  max-width: 100%;
+  width: 220px;
   height: auto;
 }
 .footer__logo-caption {

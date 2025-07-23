@@ -19,6 +19,13 @@ product-info {
   padding-left: 0;
 }
 
+.product-info__wrapper {
+  background-color: #fff;
+  padding: 4%;
+  border-radius: 20px;
+  margin-top: 40px;
+}
+
 @media screen and (min-width: 750px) {
   .product__column-sticky {
     display: block;

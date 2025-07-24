@@ -21,9 +21,9 @@ product-info {
 
 .product-info__wrapper {
   background-color: #fff;
-  padding: 4%;
+  padding: 50px;
   border-radius: 20px;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 @media screen and (min-width: 750px) {

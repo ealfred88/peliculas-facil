@@ -5,6 +5,41 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
+{%- style -%}
+
+  #MegaMenu-Content-1 .mega-menu__list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  #MegaMenu-Content-1 .mega-menu__list > li {
+    width: 260px;
+  }
+  #MegaMenu-Content-1 .mega-menu__list > li .list-unstyled {
+    position: absolute;
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    top: 0;
+    left: 300px;
+    width: 720px;
+    height: 400px;
+    background-color: #fff;
+  }
+  #MegaMenu-Content-1 .mega-menu__list > li .list-unstyled > li {
+    width: 33.3%;
+  }
+  #MegaMenu-Content-1 .mega-menu__list > li:hover .list-unstyled {
+    display: flex;
+  }
+  #MegaMenu-Content-1 .mega-menu__list > li:first-child .list-unstyled {
+    display: flex;
+  }
+
+{%- endstyle -%}
+
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}

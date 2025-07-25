@@ -181,6 +181,18 @@ slider-component.slider-component-full-width {
     padding-left: 1.5rem;
   }
 
+  .slider--desktop.grid--8-col-desktop .grid__item {
+    width: calc((100% - var(--desktop-margin-left-first-item)) / 8 - var(--grid-desktop-horizontal-spacing) * 2);
+  }
+
+  .slider--desktop.grid--7-col-desktop .grid__item {
+    width: calc((100% - var(--desktop-margin-left-first-item)) / 7 - var(--grid-desktop-horizontal-spacing) * 2);
+  }
+
+  .slider--desktop.grid--6-col-desktop .grid__item {
+    width: calc((100% - var(--desktop-margin-left-first-item)) / 6 - var(--grid-desktop-horizontal-spacing) * 2);
+  }
+
   .slider--desktop.grid--5-col-desktop .grid__item {
     width: calc((100% - var(--desktop-margin-left-first-item)) / 5 - var(--grid-desktop-horizontal-spacing) * 2);
   }

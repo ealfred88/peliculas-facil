@@ -1,0 +1,89 @@
+{% style %}
+
+{% endstyle %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<!-- Slider main container -->
+<div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    {% for block in section.blocks %}
+      <div class="swiper-slide">
+        {% if block.settings.image_link != blank %}
+          <a href="{{ block.settings.image_link}}">
+        {% endif %}
+        {{
+          block.settings.image
+          | image_url: 
+            width: 320, 
+            height: 80
+          | image_tag:
+            class: 'image-slider'
+        }}
+        {% if block.settings.image_link != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+    ...
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <!-- If we need scrollbar -->
+  <div class="swiper-scrollbar"></div>
+</div>
+{% javascript %}
+const swiper = new Swiper('.swiper', {
+  speed: 400,
+  slidesPerView: 6,
+  spaceBetween: 15,
+});
+{% endjavascript %}
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% schema %}
+{
+  "name": "Slider Simples de Imagens",
+  "max_blocks": 24,
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "blocks": [    
+    {
+      "type": "imagem",
+      "name": "Slide de Imagem",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem do slide"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Link da imagem"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slider Simples de Imagens",
+      "category": "Imagens"
+    }
+  ]
+}
+{% endschema %}

@@ -85,3 +85,63 @@
 .mega-menu__list--condensed .mega-menu__link {
   font-weight: normal;
 }
+
+/* Custom */
+
+#MegaMenu-Content-1 {
+  background-color: transparent;
+  margin: auto;
+  padding: 0;
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+  border: 0;
+  border-radius: 16px;
+}
+#MegaMenu-Content-1 .mega-menu__list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+#MegaMenu-Content-1 .mega-menu__list > li {
+  width: 250px;
+}
+#MegaMenu-Content-1 .mega-menu__list > li .list-unstyled {
+  position: absolute;
+  display: none;
+  flex-wrap: wrap;
+  flex-direction: column;
+  top: 0;
+  left: 250px;
+  width: calc(100% - 250px);
+  height: 100%;
+  background-color: #fff;
+  padding: 25px;
+}
+#MegaMenu-Content-1 .mega-menu__list > li .list-unstyled > li {
+  width: 25%;
+}
+#MegaMenu-Content-1 .mega-menu__list > li:hover .list-unstyled {
+  display: flex;
+}
+#MegaMenu-Content-1 .mega-menu__list > li:first-child .list-unstyled {
+  display: flex;
+}
+#MegaMenu-Content-1 .mega-menu__link.mega-menu__link--level-2 {
+  font-weight: 300;
+  background-color: #215AA8;
+  color: #fff;
+  padding: 12px 24px;
+  border-bottom: 1px solid #fff;
+}
+#MegaMenu-Content-1 > .mega-menu__list > li:last-child a {
+  border-bottom: 0;
+}
+#MegaMenu-Content-1 .mega-menu__link {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

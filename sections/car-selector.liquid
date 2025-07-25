@@ -1,0 +1,82 @@
+<!-- sections/car-selector.liquid -->
+ {% schema %}
+{
+  "name": "Seletor de Carros",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Seletor de Carros",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+<div id="car-selector">
+  <label>Marca:</label>
+  <select id="select-marca">
+    <option value="">Selecione uma marca</option>
+    {% for collection in collections %}
+      <option value="{{ collection.handle }}">{{ collection.title }}</option>
+    {% endfor %}
+  </select>
+
+  <label>Modelo:</label>
+  <select id="select-modelo" disabled>
+    <option value="">Selecione um modelo</option>
+  </select>
+</div>
+
+<section id="produto-info" style="display: none;">
+  <h2 id="produto-title"></h2>
+  <img id="produto-img" style="max-width: 200px;" />
+  <p id="produto-desc"></p>
+  <p><strong id="produto-price"></strong></p>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const selectMarca = document.getElementById("select-marca");
+  const selectModelo = document.getElementById("select-modelo");
+  const produtoInfo = document.getElementById("produto-info");
+
+  selectMarca.addEventListener("change", async () => {
+    const handle = selectMarca.value;
+    if (!handle) return;
+
+    selectModelo.innerHTML = '<option value="">Carregando modelos...</option>';
+    selectModelo.disabled = true;
+
+    const res = await fetch(`/collections/${handle}/products.json`);
+    const data = await res.json();
+
+    if (!data.products.length) {
+      selectModelo.innerHTML = '<option value="">Nenhum modelo encontrado</option>';
+      return;
+    }
+
+    selectModelo.innerHTML = '<option value="">Selecione um modelo</option>';
+    data.products.forEach(prod => {
+      selectModelo.innerHTML += `<option value="${prod.handle}">${prod.title}</option>`;
+    });
+
+    selectModelo.disabled = false;
+    produtoInfo.style.display = "none";
+  });
+
+  selectModelo.addEventListener("change", async () => {
+    const handle = selectModelo.value;
+    if (!handle) return;
+
+    const res = await fetch(`/products/${handle}.json`);
+    const { product } = await res.json();
+
+    document.getElementById("produto-title").innerText = product.title;
+    document.getElementById("produto-img").src = product.images[0]?.src || "";
+    document.getElementById("produto-desc").innerText = product.body_html.replace(/<[^>]*>?/gm, '');
+    document.getElementById("produto-price").innerText = `Preço: R$ ${(product.variants[0].price).replace('.', ',')}`;
+
+    produtoInfo.style.display = "block";
+  });
+});
+</script>

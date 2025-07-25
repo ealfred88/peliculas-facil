@@ -37,12 +37,15 @@
         "paragraph_cGATMT",
         "email_form_V4ciUa"
       ],
+      "custom_css": [
+        ".newsletter {background-color: #f1f1f1; margin-top: 40px; padding-bottom: 40px;}"
+      ],
       "name": "t:sections.newsletter.presets.name",
       "settings": {
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 40
       }
     },
     "footer": {
@@ -51,14 +54,14 @@
         "link_list_JYxCyA": {
           "type": "link_list",
           "settings": {
-            "heading": "Links rápidos",
-            "menu": "footer"
+            "heading": "Institucionais",
+            "menu": "institucionais-de-rodap"
           }
         },
         "link_list_yhzcty": {
           "type": "link_list",
           "settings": {
-            "heading": "Links rápidos",
+            "heading": "Categorias",
             "menu": "footer"
           }
         }
@@ -82,7 +85,7 @@
         "show_policy": true,
         "margin_top": 0,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 0
       }
     }
   },

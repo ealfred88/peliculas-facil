@@ -37,11 +37,17 @@
     },
     "header": {
       "type": "header",
+      "custom_css": [
+        "#MegaMenu-Content-1 .mega-menu__list {position: relative; display: flex; flex-direction: column; flex-wrap: wrap; gap: 1rem;}",
+        "#MegaMenu-Content-1 .mega-menu__list > li {width: 260px;}",
+        "#MegaMenu-Content-1 .mega-menu__list > li .list-unstyled {position: absolute; display: flex; flex-wrap: wrap; flex-direction: column; top: 0; left: 300px; width: 720px; height: 400px; background-color: #fff;}",
+        "#MegaMenu-Content-1 .mega-menu__list > li .list-unstyled > li {width: 33.3%;}"
+      ],
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
+        "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
         "color_scheme": "scheme-1",
@@ -50,13 +56,32 @@
         "enable_language_selector": true,
         "enable_customer_avatar": true,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "breadcrumb_pGMidW": {
+      "type": "breadcrumb",
+      "custom_css": [
+        ".breadcrumb-section {background-color: #215aa8;}"
+      ],
+      "name": "Breadcrumb Navigation",
+      "settings": {
+        "breadcrumbs_home_icon_bool": false,
+        "breadcrumb_delimeter": "angle_right",
+        "breadcrumb_bg_color": "rgba(0,0,0,0)",
+        "breadcrumb_text_color": "#ffffff",
+        "breadcrumb_accent_color_bool": false,
+        "breadcrumb_accent_color": "#ffffff",
+        "enable_product_page": false,
+        "enable_collection_page": false,
+        "enable_complete_site": true
       }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "breadcrumb_pGMidW"
   ]
 }

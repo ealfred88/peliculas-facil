@@ -30,7 +30,7 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button",
+            "picker_type": "dropdown",
             "swatch_shape": "circle"
           }
         },
@@ -66,9 +66,17 @@
         "description",
         "share"
       ],
+      "custom_css": [
+        "h1 {font-size: 20px;}",
+        ".product:not(.product--columns) .product__media-list .product__media-item:first-child {width: inherit; max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);}",
+        ".product__info-container {background-color: #fff; padding: 25px; border-radius: 12px;}",
+        ".product__media-wrapper .grid {column-gap: 15px; row-gap: 15px;}",
+        ".product-media-container {border: 0;}",
+        ".product-media-container .media {border-radius: 12px;}"
+      ],
       "settings": {
         "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
@@ -79,18 +87,34 @@
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
-        "padding_bottom": 12
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_video_aeFqpt": {
+      "type": "multicolumn-video",
+      "custom_css": [
+        ".multicolumn__title {justify-content: center;}"
+      ],
+      "name": "t:sections.multicolumn-video.presets.name",
+      "settings": {
+        "title": "Vídeos de aplicação",
+        "heading_size": "h2",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "related-products": {
       "type": "related-products",
+      "custom_css": [
+        "h2 {text-align: center;}"
+      ],
       "settings": {
-        "heading": "You may also like",
+        "heading": "Confira também",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,
         "columns_mobile": "2",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -103,6 +127,7 @@
   },
   "order": [
     "main",
+    "multicolumn_video_aeFqpt",
     "related-products"
   ]
 }

@@ -1,0 +1,221 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        ".collection-hero__inner {background-color: #000; border-radius: 12px; overflow: hidden;}",
+        ".collection-hero__title {color: #fff; font-size: 24px;}",
+        ".collection-hero__image-container {--media-border-width: 0;}",
+        ".collection-hero--with-image .collection-hero__text-wrapper {padding: 4rem 2rem;}",
+        ".collection-hero__description {color: #fff; font-size: 16px; font-weight: 300; margin-top: 12px; margin-bottom: 0;}"
+      ],
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "color_scheme": "scheme-2",
+        "collection_image_top": "shopify://shop_images/topo-bg-automotiva-half.jpg"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_TQc4yQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_C3keaW": {
+          "type": "heading",
+          "settings": {
+            "heading": "Por que escolher as Películas Automotivas da Películas Fácil?",
+            "heading_size": "h2"
+          }
+        },
+        "text_UCeewc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Nossas <strong>películas</strong> são fabricadas com tecnologia de ponta, oferecendo durabilidade e performance excepcionais. Ao colocar uma de nossas <strong>películas</strong>, você garante:</p>"
+          }
+        },
+        "button_q7KJNF": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_C3keaW",
+        "text_UCeewc",
+        "button_q7KJNF"
+      ],
+      "custom_css": [
+        ".content-container {border-top-left-radius: 20px; border-top-right-radius: 20px;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "multicolumn_gFhbx3": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_QDdmVe": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-automotiva-01_2a54921b-d9d8-4196-8877-fb874bce4d9e.jpg",
+            "title": "Segurança reforçada",
+            "text": "<p>Em caso de quebra do <strong>vidro</strong>, a <strong>película</strong> ajuda a manter os fragmentos unidos, protegendo os ocupantes contra estilhaços e dificultando arrombamentos.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_hKQcHt": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-automotiva-02_8ec68fbc-9166-4aa5-8147-cd58d085c9b7.jpg",
+            "title": "Controle solar avançado",
+            "text": "<p>Reduza drasticamente a entrada de calor e raios UV nocivos, protegendo o interior do seu <strong>carro</strong> contra o desgaste e desbotamento.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_CVQyQy": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-automotiva-03_0cd2314e-00cf-494b-bbca-a822de3bf6c7.jpg",
+            "title": "Privacidade e estilo",
+            "text": "<p>Escolha entre diversas tonalidades de <strong>insufilm</strong> para personalizar o visual do seu veículo e garantir a privacidade que você deseja.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_QDdmVe",
+        "column_hKQcHt",
+        "column_CVQyQy"
+      ],
+      "custom_css": [
+        ".multicolumn .isolate {padding-left: 20px; padding-right: 20px; background-color: #fff;}",
+        ".multicolumn-list {--grid-desktop-horizontal-spacing: 16px;}",
+        ".multicolumn-card {background: #fff; border: 1px solid #ddd; border-radius: 14px; overflow: hidden;}",
+        ".multicolumn-card__image-wrapper {padding-top: 0; margin-left: 0; margin-right: 0;}",
+        ".multicolumn-card__info {text-align: center; background-color: #fff;}",
+        ".multicolumn-card__info h3 {color: #0372d8;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_mkdPiJ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_3m4apn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-automotiva-04_26ad1572-2c37-474e-99b5-de53e72204e5.jpg",
+            "title": "Economia de combustível",
+            "text": "<p>Com a redução da temperatura interna, o ar condicionado do seu <strong>carro</strong> trabalhará menos, resultando em economia de combustível.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gKgFLj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-automotiva-05_0a99dbcc-37eb-472f-93b2-9faba0553c36.jpg",
+            "title": "Proteção contra ofuscamento",
+            "text": "<p>Diminua o brilho excessivo dos faróis e do sol, proporcionando uma visão mais clara e segura durante a direção.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_3m4apn",
+        "column_gKgFLj"
+      ],
+      "custom_css": [
+        ".multicolumn .isolate {padding-left: 20px; padding-right: 20px; background-color: #fff; margin-bottom: 40px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;}",
+        ".multicolumn-list {--grid-desktop-horizontal-spacing: 16px;}",
+        ".multicolumn-card {background: #fff; border: 1px solid #ddd; border-radius: 14px; overflow: hidden;}",
+        ".multicolumn-card__image-wrapper {padding-top: 0; margin-left: 0; margin-right: 0;}",
+        ".multicolumn-card__info {text-align: center; background-color: #fff;}",
+        ".multicolumn-card__info h3 {color: #0372d8;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "rich_text_TQc4yQ",
+    "multicolumn_gFhbx3",
+    "multicolumn_mkdPiJ"
+  ]
+}

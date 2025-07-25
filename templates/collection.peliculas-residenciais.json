@@ -12,15 +12,17 @@
     "banner": {
       "type": "main-collection-banner",
       "custom_css": [
-        ".collection-hero__title {font-size: 24px;}",
+        ".collection-hero__inner {background-color: #000; border-radius: 12px; overflow: hidden;}",
+        ".collection-hero__title {color: #fff; font-size: 24px;}",
+        ".collection-hero__image-container {--media-border-width: 0;}",
         ".collection-hero--with-image .collection-hero__text-wrapper {padding: 4rem 2rem;}",
-        ".collection-hero__description {font-size: 16px; font-weight: 300; margin-top: 12px; margin-bottom: 0;}"
+        ".collection-hero__description {color: #fff; font-size: 16px; font-weight: 300; margin-top: 12px; margin-bottom: 0;}"
       ],
       "settings": {
         "show_collection_description": true,
         "show_collection_image": true,
         "color_scheme": "scheme-2",
-        "collection_image_top": "shopify://shop_images/topo-bg-automotiva-half.jpg"
+        "collection_image_top": "shopify://shop_images/topo-bg-residencial-half.jpg"
       }
     },
     "product-grid": {

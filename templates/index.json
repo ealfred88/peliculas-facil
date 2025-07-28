@@ -68,11 +68,6 @@
         "accessibility_info": "Apresentação de slides sobre nossa marca"
       }
     },
-    "car_selector_gAdjmK": {
-      "type": "home-pelicula-residencial",
-      "name": "Seletor de Carros",
-      "settings": {}
-    },
     "featured_product_APb9aQ": {
       "type": "featured-product",
       "blocks": {
@@ -474,7 +469,6 @@
   },
   "order": [
     "slideshow_Kr6LMU",
-    "car_selector_gAdjmK",
     "featured_product_APb9aQ",
     "custom_liquid_hyaerH",
     "collection_list_8MPCbd",

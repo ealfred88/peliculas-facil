@@ -1,0 +1,112 @@
+<!-- sections/car-selector-quick-buy.liquid -->
+{%- style -%}
+
+  .product__title {
+    color: #1F1F1F;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .ver-detalhes {
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    padding: 16px 80px;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 1px solid #DCDCDC;
+    background: #5ABB46;
+    box-shadow: 8px 8px 15px 0 rgba(94, 94, 94, 0.06);
+    transition: background 0.3s ease
+    , color 0.3s ease;
+  }
+  .ver-detalhes:hover {
+    background: #4A9B3A;
+    color: #fff;
+  }
+  .product__img-wrapper {
+    height: 500px;
+    object-fit: cover;
+  }
+{%- endstyle -%}
+
+{% if product %}
+  <div class="quick-buy-section pt-5" id="quick-buy-{{ product.id }}">
+    <div class="row quick-buy-content">
+      <div class="col-5 product__img-wrapper">
+        <img
+          src="{{ product.featured_image | img_url: 'master' }}"
+          alt="{{ product.title }}"
+          class="img-fluid "
+          width="100%"
+          height="auto"/>
+      </div>
+      <div class="col-7 px-5 product__info d-flex flex-column justify-content-center">
+        <h3 class="product__title mb-5">{{ product.title }}</h3>
+        {% comment %} <div class="product-price">
+            <span class="price">
+            A partir de: {{ product.variants | map: 'price' | sort | first | money }}
+            </span>
+        </div> {% endcomment %}
+        {% comment %} 
+                    {% unless product.has_only_default_variant %}
+                      <div class="product-variants">
+                        {% for option in product.options_with_values %}
+                          <div class="variant-option">
+                            <label>{{ option.name }}</label>
+                            <select name="id" data-option-position="{{ option.position }}">
+                              {% for value in option.values %}
+                                <option value="{{ value }}">{{ value }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endunless %}
+                    <form
+                      action="{{ routes.cart_add_url }}"
+                      method="post"
+                      enctype="multipart/form-data">
+                      <input
+                        type="hidden"
+                        name="id"
+                        value="{{ product.selected_or_first_available_variant.id }}">
+                      <button type="submit" class="btn btn-primary">
+                        {% if product.available %}
+                          Adicionar ao Carrinho
+                        {% else %}
+                          Indisponível
+                        {% endif %}
+                      </button>
+                </form> {% endcomment %}
+
+        {% comment  %} Botão para link do produto {% endcomment %}
+
+        <a href="{{ product.url }}" class="ver-detalhes mt-3">
+          Ver mais detalhes
+        </a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Car Selector Quick Buy",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Car Selector Quick Buy"
+      }
+    ]
+  }
+{% endschema %}

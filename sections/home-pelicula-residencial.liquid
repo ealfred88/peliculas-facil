@@ -1,0 +1,373 @@
+<!-- sections/car-selector.liquid -->
+
+{%- style -%}
+  .car-selector {
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 40px;
+    padding: 48px;
+  }
+  .car-selector__title {
+    color: #1F1F1F;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  .car-selector__subtitle {
+    color: #1F1F1F;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+  }
+  .select-item__marca-select,
+  .select-item__modelo-select {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 16px 40px 16px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    background-image: url("{{ 'car-selector-arrow.svg' | asset_url }}");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+  }
+  .select-item__marca-select:focus,
+  .select-item__modelo-select:focus {
+    outline: none;
+    box-shadow: initial;
+  }
+  .pitchbar-item {
+    padding: 0 8px;
+  }
+  .pitchbar-item__wrapper {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  .pitchbar-item__image {
+    border-right: 1px solid #ccc;
+  }
+  .pitchbar-item__image img {
+    max-height: 40px;
+  }
+  .pitchbar-item:nth-of-type(1) .pitchbar-item__wrapper .pitchbar-item__image img {
+    transform: scale(1.2);
+  }
+  .pitchbar-item__image,
+  .pitchbar-item__text {
+    padding: 16px;
+  }
+  .show-product {
+    overflow: hidden;
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.5s ease-in-out;
+  }
+  .show-product.active {
+    max-height: 1000px;
+  }
+{%- endstyle -%}
+
+<section class="container car-selector">
+  <div class="row select-item mb-5">
+    <div class="col-6">
+      <h2 class="car-selector__title">Encontre a película ideal</h2>
+      <p class="car-selector__subtitle">Navegue nas opções e encontre o produto exato para a sua necessidade.</p>
+    </div>
+    <div id="car-selector" class="col-6 d-flex flex-wrap">
+      <div class="col-6 marca d-flex align-items-center pe-2">
+        <label class="d-none">Marca:</label>
+        <select id="select-marca" class="select-item__marca-select">
+          <option value="">Selecione uma marca</option>
+          {% for collection in collections %}
+            {% if collection.metafields.custom.marca and collection.handle %}
+              <option value="{{ collection.handle }}">{{ collection.title }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-6 modelo d-flex align-items-center ps-2">
+        <label class="d-none">Modelo:</label>
+        <select
+          id="select-modelo"
+          class="select-item__modelo-select"
+          disabled>
+          <option value="">Selecione um modelo</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row pitchbar">
+    <div class="col-3 pitchbar-item d-flex">
+      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
+          <img
+            src="{{ 'car-selector-conforto-termico.svg' | asset_url }}"
+            alt="Car Selector"
+            width="auto"
+            height="auto" />
+        </div>
+        <div class="col-8 pitchbar-item__text">
+          Conforto Térmico
+        </div>
+      </div>
+    </div>
+    <div class="col-3 pitchbar-item d-flex">
+      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
+          <img
+            src="{{ 'car-selector-protecao-uv.svg' | asset_url }}"
+            alt="Car Selector"
+            style="max-width: 100%; height: auto;"
+            width="auto"
+            height="auto" />
+        </div>
+        <div class="col-8 pitchbar-item__text">
+          Proteção UV
+        </div>
+      </div>
+    </div>
+    <div class="col-3 pitchbar-item d-flex">
+      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
+          <img
+            src="{{ 'car-selector-economia.svg' | asset_url }}"
+            alt="Car Selector"
+            style="max-width: 100%; height: auto;"
+            width="auto"
+            height="auto" />
+        </div>
+        <div class="col-8 pitchbar-item__text">
+          Economia de <br> ar-condicionado
+        </div>
+      </div>
+    </div>
+    <div class="col-3 pitchbar-item d-flex">
+      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
+          <img
+            src="{{ 'car-selector-sem-metal.svg' | asset_url }}"
+            alt="Car Selector"
+            style="max-width: 100%; height: auto;"
+            width="auto"
+            height="auto" />
+        </div>
+        <div class="col-8 pitchbar-item__text">
+          Sem metal na composição
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="show-product" class="show-product">
+    <!-- O conteúdo do quick-buy será inserido aqui via JavaScript -->
+  </div>
+
+
+</section>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // loadQuickBuySnippet("pelicula-insulfilm-nano-ceramica-automotiva-termica-kia-cerato");
+    const selectMarca = document.getElementById("select-marca");
+    const selectModelo = document.getElementById("select-modelo");
+    const produtoInfo = document.getElementById("produto-info");
+    
+    selectMarca.addEventListener("change", async () => {
+      const handle = selectMarca.value.toLowerCase();
+      if (!handle) return;
+    
+      selectModelo.innerHTML = '<option value="">Carregando modelos...</option>';
+      selectModelo.disabled = true;
+    
+      const res = await fetch(`/collections/${handle}/products.json`);
+      let data = await res.json();
+      console.log(data);
+      if (!data.products.length) {
+        selectModelo.innerHTML = '<option value="">Nenhum modelo encontrado</option>';
+        return;
+      }
+      
+      selectModelo.innerHTML = '<option value="">Selecione um modelo</option>';
+      data.products.forEach(prod => {
+        selectModelo.innerHTML += `<option value="${prod.handle}">${prod.title}</option>`;
+      });
+    
+      selectModelo.disabled = false;
+      produtoInfo.style.display = "none";
+    });
+    
+    selectModelo.addEventListener("change", async () => {
+      const handle = selectModelo.value;
+      const showProduct = document.getElementById('show-product');
+      if (showProduct.classList.contains('active')) {
+        showProduct.classList.remove('active');
+      }
+      setTimeout(() => {
+        showProduct.classList.add('active');
+      }, 1000);
+      if (!handle) return;
+    
+      const storefrontAccessToken = 'ad4a9be2a38ab8b8fb23c4274d2d5e7b';
+      const shop = 'peliculas-facil.myshopify.com';
+  
+      const query = `
+      {
+        product(handle: "${handle}") {
+          id
+          handle
+          title
+          description
+          descriptionHtml
+          vendor
+          productType
+          tags
+          availableForSale
+          totalInventory
+          createdAt
+          updatedAt
+          metafield: metafield(namespace: "custom", key: "modelo_do_veiculo") {
+            value
+          }
+          publishedAt
+          onlineStoreUrl
+          featuredImage {
+            id
+            url
+            altText
+            width
+            height
+          }
+          images(first: 10) {
+            edges {
+              node {
+                id
+                url
+                altText
+                width
+                height
+              }
+            }
+          }
+          variants(first: 10) {
+            edges {
+              node {
+                id
+                title
+                availableForSale
+                currentlyNotInStock
+                quantityAvailable
+                price {
+                  amount
+                  currencyCode
+                }
+                compareAtPrice {
+                  amount
+                  currencyCode
+                }
+                weight
+                weightUnit
+                requiresShipping
+                taxable
+                sku
+                barcode
+                selectedOptions {
+                  name
+                  value
+                }
+                image {
+                  id
+                  url
+                  altText
+                }
+              }
+            }
+          }
+          options {
+            id
+            name
+            values
+          }
+          collections(first: 5) {
+            edges {
+              node {
+                id
+                title
+                handle
+              }
+            }
+          }
+          seo {
+            title
+            description
+          }
+        }
+      }
+      `;
+  
+      fetch(`https://${shop}/api/2023-07/graphql.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": storefrontAccessToken
+      },
+      body: JSON.stringify({ query })
+      })
+      .then(res => res.json())
+      .then(data => {
+        // console.log("Resposta completa:", data);
+        
+        if (data.errors) {
+          console.error("Erros GraphQL:", data.errors);
+          return;
+        }
+        
+        const product = data.data.product;
+        if (!product) {
+          console.error("Produto não encontrado");
+          return;
+        }
+                
+        loadQuickBuySnippet(product.handle);
+      })
+      .catch(error => {
+        console.error("Erro ao buscar dados do produto:", error);
+      });
+    });
+    
+    async function loadQuickBuySnippet(productHandle) {
+      try {
+        const response = await fetch(`/products/${productHandle}?sections=home-pelicula-automotiva-produto`);
+        const data = await response.json();
+        if (data['home-pelicula-automotiva-produto']) {
+          document.getElementById('show-product').innerHTML = data['home-pelicula-automotiva-produto'];
+          document.getElementById('show-product').classList.add('active');
+        }
+      } catch (error) {
+        console.error('Erro ao carregar quick-buy:', error);
+      }
+    }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Seletor de Carros",
+    "tag": "section",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Seletor de Carros",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

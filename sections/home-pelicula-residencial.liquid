@@ -1,360 +1,409 @@
-<!-- sections/car-selector.liquid -->
+<!-- sections/home-pelicula-residencial.liquid -->
 
 {%- style -%}
-  .car-selector {
+  .pelicula-residencial {
     background-color: #fff;
     border-radius: 20px;
     margin-top: 40px;
     padding: 48px;
   }
-  .car-selector__title {
-    color: #1F1F1F;
-    font-size: 40px;
-    font-style: normal;
+  .pelicula-residencial__content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+  .pelicula-residencial__image {
+    flex: 0 0 400px;
+  }
+  .pelicula-residencial__image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  .pelicula-residencial__details {
+    flex: 1;
+  }
+  .pelicula-residencial__title {
+    color: #000;
+    font-size: 28px;
     font-weight: 600;
-    line-height: normal;
-    margin-top: 0;
+    margin: 0;
+  }
+  .pelicula-residencial__subtitle {
+    color: #000;
+    font-size: 16px;
+    margin: 8px 0;
+    font-weight: 600;
+  }
+  .pelicula-residencial__price {
+    font-size: 32px;
+    font-weight: 600;
+    color: #5ABB46;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .variant-list {
+    margin-bottom: 14px;
+  }
+  .variant-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .variant-item:last-child {
+    border-bottom: none;
+  }
+  .variante-item {
     margin-bottom: 12px;
   }
-  .car-selector__subtitle {
-    color: #1F1F1F;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin: 0;
+  .variant-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    margin-right: 16px;
   }
-  .select-item__marca-select,
-  .select-item__modelo-select {
+  .variant-options {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+  }
+  .variant-option {
+    flex: 1;
+  }
+  .variant-option label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  .variant-option select {
     width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 16px 40px 16px 16px;
-    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    appearance: none;
-    background-image: url("{{ 'car-selector-arrow.svg' | asset_url }}");
-    background-repeat: no-repeat;
-    background-position: right 20px center;
+    font-size: 14px;
   }
-  .select-item__marca-select:focus,
-  .select-item__modelo-select:focus {
-    outline: none;
-    box-shadow: initial;
+  .variant-remove {
+    width: 32px;
+    height: 40px;
+    color: #ff4444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin-left: 16px;
   }
-  .pitchbar-item {
-    padding: 0 8px;
+  .add-variant-btn {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 24px;
   }
-  .pitchbar-item__wrapper {
+  .variant-summary {
+    background: #eee;
+    padding: 24px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+  .variant-summary-total {
+  
+  }
+  .variant-summary-row-quantity {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .variant-summary-row-price {
+    width: 120px;
+  }
+  #valor-total {
+    font-size: 24px;
+    font-weight: 600;
+    color: #5ABB46;
+    line-height: 1;
+  }
+  .condicao-parcela {
+    font-size: 14px
+  }
+  .action-buttons {
+    height: 40px;
+    display: flex;
+    gap: 16px;
+  }
+  .btn-comprar {
+    background: #5ABB46;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    height: 100%;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .btn-comprar:hover {
+    background: #3B6330;
+    color: #fff;
+  }
+  .btn-detalhes {
+    background: transparent;
+    color: #000;
+    padding: 8px 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    height: 100%;
+    transition: background 0.3s ease, color 0.3s ease;
   }
-  .pitchbar-item__image {
-    border-right: 1px solid #ccc;
-  }
-  .pitchbar-item__image img {
-    max-height: 40px;
-  }
-  .pitchbar-item:nth-of-type(1) .pitchbar-item__wrapper .pitchbar-item__image img {
-    transform: scale(1.2);
-  }
-  .pitchbar-item__image,
-  .pitchbar-item__text {
-    padding: 16px;
-  }
-  .show-product {
-    overflow: hidden;
-    max-height: 0;
-    margin: 0;
-    padding: 0;
-    transition: max-height 0.5s ease-in-out;
-  }
-  .show-product.active {
-    max-height: 1000px;
+  .btn-detalhes:hover {
+    background: #215AA8;
+    color: #fff;
+    border: 1px solid #215AA8;
   }
 {%- endstyle -%}
 
-<section class="container car-selector">
-  <div class="row select-item mb-5">
-    <div class="col-6">
-      <h2 class="car-selector__title">Encontre a película ideal</h2>
-      <p class="car-selector__subtitle">Navegue nas opções e encontre o produto exato para a sua necessidade.</p>
-    </div>
-    <div id="car-selector" class="col-6 d-flex flex-wrap">
-      <div class="col-6 marca d-flex align-items-center pe-2">
-        <label class="d-none">Marca:</label>
-        <select id="select-marca" class="select-item__marca-select">
-          <option value="">Selecione uma marca</option>
-          {% for collection in collections %}
-            {% if collection.metafields.custom.marca and collection.handle %}
-              <option value="{{ collection.handle }}">{{ collection.title }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col-6 modelo d-flex align-items-center ps-2">
-        <label class="d-none">Modelo:</label>
-        <select
-          id="select-modelo"
-          class="select-item__modelo-select"
-          disabled>
-          <option value="">Selecione um modelo</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <div class="row pitchbar">
-    <div class="col-3 pitchbar-item d-flex">
-      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
-          <img
-            src="{{ 'car-selector-conforto-termico.svg' | asset_url }}"
-            alt="Car Selector"
-            width="auto"
-            height="auto" />
-        </div>
-        <div class="col-8 pitchbar-item__text">
-          Conforto Térmico
-        </div>
-      </div>
-    </div>
-    <div class="col-3 pitchbar-item d-flex">
-      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
-          <img
-            src="{{ 'car-selector-protecao-uv.svg' | asset_url }}"
-            alt="Car Selector"
-            style="max-width: 100%; height: auto;"
-            width="auto"
-            height="auto" />
-        </div>
-        <div class="col-8 pitchbar-item__text">
-          Proteção UV
-        </div>
-      </div>
-    </div>
-    <div class="col-3 pitchbar-item d-flex">
-      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
-          <img
-            src="{{ 'car-selector-economia.svg' | asset_url }}"
-            alt="Car Selector"
-            style="max-width: 100%; height: auto;"
-            width="auto"
-            height="auto" />
-        </div>
-        <div class="col-8 pitchbar-item__text">
-          Economia de <br> ar-condicionado
-        </div>
-      </div>
-    </div>
-    <div class="col-3 pitchbar-item d-flex">
-      <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
-          <img
-            src="{{ 'car-selector-sem-metal.svg' | asset_url }}"
-            alt="Car Selector"
-            style="max-width: 100%; height: auto;"
-            width="auto"
-            height="auto" />
-        </div>
-        <div class="col-8 pitchbar-item__text">
-          Sem metal na composição
-        </div>
-      </div>
-    </div>
-  </div>
+{% comment %} Buscar produto das configurações ou produto padrão {% endcomment %}
+{% if section.settings.featured_product %}
+  {% assign target_product = section.settings.featured_product %}
+{% else %}
+  {% assign target_product = all_products['pelicula-nano-ceramica-residencial'] %}
+  {% unless target_product %}
+    {% for product in collections.all.products limit: 1 %}
+      {% assign target_product = product %}
+      {% break %}
+    {% endfor %}
+  {% endunless %}
+{% endif %}
 
-  <div id="show-product" class="show-product">
-    <!-- O conteúdo do quick-buy será inserido aqui via JavaScript -->
-  </div>
+{% assign section_title = section.settings.section_title | default: 'Película Nano Cerâmica Residencial' %}
+{% assign section_subtitle = section.settings.section_subtitle | default: 'Compra por metro ²' %}
+{% assign max_installments = section.settings.max_installments | default: 5 %}
 
-
+<section class="container pelicula-residencial">
+  {% if target_product %}
+    <div class="pelicula-residencial__content">
+      <div class="pelicula-residencial__image">
+        <img 
+          src="{{ target_product.featured_image | image_url: width: 600 }}" 
+          alt="{{ target_product.title }}"
+          width="600"
+          height="400"
+        />
+      </div>
+      
+      <div class="pelicula-residencial__details">
+        <h2 class="pelicula-residencial__title">{{ section_title }}</h2>
+        <p class="pelicula-residencial__subtitle">{{ section_subtitle }}</p>
+        
+        <div class="pelicula-residencial__price">
+          R$ {{ target_product.price | money_without_currency | replace: ',', '.' }}m²
+          <small style="font-size: 14px; color: #000; font-weight: 400;">em até {{ max_installments }}x <b>sem juros</b></small>
+        </div>
+        
+        <form action="{{ routes.cart_add_url }}" method="post" id="variant-form">
+          <div class="variant-list" id="variant-list">
+            <div class="d-flex justify-content-center align-items-end variante-item" data-variant-index="1">
+              <div class="variant-number">1</div>
+              <div class="variant-options">
+                <div class="variant-option">
+                  <label>Largura:</label>
+                  <select name="largura_1" data-option="largura">
+                    {% for option in target_product.options %}
+                      {% if option contains 'Largura' or option contains 'largura' %}
+                        {% for value in target_product.options[forloop.index0].values %}
+                          <option value="{{ value }}">{{ value }}</option>
+                        {% endfor %}
+                      {% else %}
+                        <option value="1,42 m">1,42 m</option>
+                        <option value="1,52 m">1,52 m</option>
+                      {% endif %}
+                      {% break %}
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="variant-option">
+                  <label>Altura:</label>
+                  <select name="altura_1" data-option="altura">
+                    <option value="50 cm">50 cm</option>
+                    <option value="60 cm">60 cm</option>
+                    <option value="70 cm">70 cm</option>
+                    <option value="80 cm">80 cm</option>
+                    <option value="90 cm">90 cm</option>
+                    <option value="100 cm">100 cm</option>
+                  </select>
+                </div>
+                <div class="variant-option">
+                  <label>Quantidade:</label>
+                  <select name="quantidade_1" data-option="quantidade">
+                    {% for i in (1..20) %}
+                      <option value="{{ i }}" {% if i == 10 %}selected{% endif %}>{{ i }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="variant-option">
+                  <label>Tonalidade:</label>
+                  <select name="tonalidade_1" data-option="tonalidade">
+                    {% for variant in target_product.variants limit: 5 %}
+                      {% if variant.title != 'Default Title' %}
+                        <option value="{{ variant.title }}">{{ variant.title }}</option>
+                      {% else %}
+                        <option value="G 35">G 35</option>
+                        <option value="G 50">G 50</option>
+                        <option value="G 70">G 70</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="variant-remove" onclick="removeVariant(1)">×</div>
+            </div>
+          </div>
+          
+          <div class="add-variant-btn" onclick="addVariant()">
+            Incluir novo item
+          </div>
+          
+          <div class="variant-summary d-flex justify-content-between">
+            <div class="variant-summary-row variant-summary-row-price d-flex flex-column col-4">
+              <span>Valor m²:</span>
+              <span id="valor-m2"><b>R$ {{ target_product.price | money_without_currency }}</b></span>
+            </div>
+            <div class="variant-summary-row variant-summary-row-quantity justify-content-start d-flex flex-column col-4">
+              <span>Total itens:</span>
+              <span id="total-itens"><b>1</b></span>
+            </div>
+            <div class="variant-summary-total d-flex flex-column col-4">
+              <span>Valor total:</span>
+              <span id="valor-total">R$ {{ target_product.price | money_without_currency }}</span>
+              <span class="condicao-parcela">Em até {{ max_installments }}x de R$ <span id="parcela">{{ target_product.price | divided_by: max_installments | money_without_currency }}</span> sem juros</span>
+            </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button type="submit" class="btn-comprar">Comprar</button>
+            <a href="{{ target_product.url }}" class="btn-detalhes">Ver mais detalhes</a>
+          </div>
+          
+          <input type="hidden" name="id" value="{{ target_product.selected_or_first_available_variant.id }}" id="selected-variant-id">
+        </form>
+      </div>
+    </div>
+  {% else %}
+    <div class="pelicula-residencial__content">
+      <p>Produto não encontrado. Configure um produto específico nas configurações da seção.</p>
+    </div>
+  {% endif %}
 </section>
 
-
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // loadQuickBuySnippet("pelicula-insulfilm-nano-ceramica-automotiva-termica-kia-cerato");
-    const selectMarca = document.getElementById("select-marca");
-    const selectModelo = document.getElementById("select-modelo");
-    const produtoInfo = document.getElementById("produto-info");
-    
-    selectMarca.addEventListener("change", async () => {
-      const handle = selectMarca.value.toLowerCase();
-      if (!handle) return;
-    
-      selectModelo.innerHTML = '<option value="">Carregando modelos...</option>';
-      selectModelo.disabled = true;
-    
-      const res = await fetch(`/collections/${handle}/products.json`);
-      let data = await res.json();
-      console.log(data);
-      if (!data.products.length) {
-        selectModelo.innerHTML = '<option value="">Nenhum modelo encontrado</option>';
-        return;
-      }
-      
-      selectModelo.innerHTML = '<option value="">Selecione um modelo</option>';
-      data.products.forEach(prod => {
-        selectModelo.innerHTML += `<option value="${prod.handle}">${prod.title}</option>`;
-      });
-    
-      selectModelo.disabled = false;
-      produtoInfo.style.display = "none";
-    });
-    
-    selectModelo.addEventListener("change", async () => {
-      const handle = selectModelo.value;
-      const showProduct = document.getElementById('show-product');
-      if (showProduct.classList.contains('active')) {
-        showProduct.classList.remove('active');
-      }
-      setTimeout(() => {
-        showProduct.classList.add('active');
-      }, 1000);
-      if (!handle) return;
-    
-      const storefrontAccessToken = 'ad4a9be2a38ab8b8fb23c4274d2d5e7b';
-      const shop = 'peliculas-facil.myshopify.com';
+  let variantCounter = 1;
+  const basePrice = {{ target_product.price | default: 8990 }};
+  const maxInstallments = {{ max_installments }};
   
-      const query = `
-      {
-        product(handle: "${handle}") {
-          id
-          handle
-          title
-          description
-          descriptionHtml
-          vendor
-          productType
-          tags
-          availableForSale
-          totalInventory
-          createdAt
-          updatedAt
-          metafield: metafield(namespace: "custom", key: "modelo_do_veiculo") {
-            value
-          }
-          publishedAt
-          onlineStoreUrl
-          featuredImage {
-            id
-            url
-            altText
-            width
-            height
-          }
-          images(first: 10) {
-            edges {
-              node {
-                id
-                url
-                altText
-                width
-                height
-              }
-            }
-          }
-          variants(first: 10) {
-            edges {
-              node {
-                id
-                title
-                availableForSale
-                currentlyNotInStock
-                quantityAvailable
-                price {
-                  amount
-                  currencyCode
-                }
-                compareAtPrice {
-                  amount
-                  currencyCode
-                }
-                weight
-                weightUnit
-                requiresShipping
-                taxable
-                sku
-                barcode
-                selectedOptions {
-                  name
-                  value
-                }
-                image {
-                  id
-                  url
-                  altText
-                }
-              }
-            }
-          }
-          options {
-            id
-            name
-            values
-          }
-          collections(first: 5) {
-            edges {
-              node {
-                id
-                title
-                handle
-              }
-            }
-          }
-          seo {
-            title
-            description
-          }
-        }
-      }
-      `;
-  
-      fetch(`https://${shop}/api/2023-07/graphql.json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": storefrontAccessToken
-      },
-      body: JSON.stringify({ query })
-      })
-      .then(res => res.json())
-      .then(data => {
-        // console.log("Resposta completa:", data);
-        
-        if (data.errors) {
-          console.error("Erros GraphQL:", data.errors);
-          return;
-        }
-        
-        const product = data.data.product;
-        if (!product) {
-          console.error("Produto não encontrado");
-          return;
-        }
-                
-        loadQuickBuySnippet(product.handle);
-      })
-      .catch(error => {
-        console.error("Erro ao buscar dados do produto:", error);
-      });
-    });
+  function addVariant() {
+    variantCounter++;
+    const variantList = document.getElementById('variant-list');
+    const newVariant = document.createElement('div');
+    newVariant.className = 'variante-item d-flex justify-content-center align-items-end';
+    newVariant.setAttribute('data-variant-index', variantCounter);
     
-    async function loadQuickBuySnippet(productHandle) {
-      try {
-        const response = await fetch(`/products/${productHandle}?sections=home-pelicula-automotiva-produto`);
-        const data = await response.json();
-        if (data['home-pelicula-automotiva-produto']) {
-          document.getElementById('show-product').innerHTML = data['home-pelicula-automotiva-produto'];
-          document.getElementById('show-product').classList.add('active');
-        }
-      } catch (error) {
-        console.error('Erro ao carregar quick-buy:', error);
-      }
+    newVariant.innerHTML = `
+      <div class="variant-number">${variantCounter}</div>
+      <div class="variant-options">
+        <div class="variant-option">
+          <label>Largura:</label>
+          <select name="largura_${variantCounter}" data-option="largura" onchange="updateTotal()">
+            <option value="1,42 m">1,42 m</option>
+            <option value="1,52 m">1,52 m</option>
+          </select>
+        </div>
+        <div class="variant-option">
+          <label>Altura:</label>
+          <select name="altura_${variantCounter}" data-option="altura" onchange="updateTotal()">
+            <option value="50 cm">50 cm</option>
+            <option value="60 cm">60 cm</option>
+            <option value="70 cm">70 cm</option>
+            <option value="80 cm">80 cm</option>
+            <option value="90 cm">90 cm</option>
+            <option value="100 cm">100 cm</option>
+          </select>
+        </div>
+        <div class="variant-option">
+          <label>Quantidade:</label>
+          <select name="quantidade_${variantCounter}" data-option="quantidade" onchange="updateTotal()">
+            ${Array.from({length: 20}, (_, i) => `<option value="${i+1}" ${i === 9 ? 'selected' : ''}>${i+1}</option>`).join('')}
+          </select>
+        </div>
+        <div class="variant-option">
+          <label>Tonalidade:</label>
+          <select name="tonalidade_${variantCounter}" data-option="tonalidade" onchange="updateTotal()">
+            <option value="G 35">G 35</option>
+            <option value="G 50">G 50</option>
+            <option value="G 70">G 70</option>
+          </select>
+        </div>
+      </div>
+      <div class="variant-remove" onclick="removeVariant(${variantCounter})">×</div>
+    `;
+    
+    variantList.appendChild(newVariant);
+    updateTotal();
+  }
+  
+  function removeVariant(index) {
+    const variants = document.querySelectorAll('.variant-item');
+    if (variants.length > 1) {
+      document.querySelector(`[data-variant-index="${index}"]`).remove();
+      updateTotal();
     }
+  }
+  
+  function updateTotal() {
+    const variants = document.querySelectorAll('.variant-item');
+    let totalItems = 0;
+    let totalValue = 0;
+    
+    variants.forEach(variant => {
+      const quantidade = parseInt(variant.querySelector('[data-option="quantidade"]').value) || 1;
+      const largura = parseFloat(variant.querySelector('[data-option="largura"]').value.replace(/[^\d,]/g, '').replace(',', '.')) || 1.42;
+      const altura = parseFloat(variant.querySelector('[data-option="altura"]').value.replace(/[^\d]/g, '')) / 100 || 0.5;
+      
+      const area = largura * altura;
+      const itemValue = area * (basePrice / 100);
+      
+      totalItems += quantidade;
+      totalValue += itemValue * quantidade;
+    });
+    
+    document.getElementById('total-itens').textContent = totalItems;
+    document.getElementById('valor-total').textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
+    document.getElementById('parcela').textContent = `${(totalValue / maxInstallments).toFixed(2).replace('.', ',')}`;
+  }
+  
+  // Adicionar event listeners para os selects iniciais
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('select[data-option]').forEach(select => {
+      select.addEventListener('change', updateTotal);
+    });
+    updateTotal();
   });
 </script>
 
@@ -362,7 +411,35 @@
   {
     "name": "Home Película Residencial",
     "tag": "section",
-    "settings": [],
+    "settings": [
+      {
+        "type": "product",
+        "id": "featured_product",
+        "label": "Produto em Destaque",
+        "info": "Selecione o produto que será exibido nesta seção"
+      },
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Título da Seção",
+        "default": "Película Nano Cerâmica Residencial"
+      },
+      {
+        "type": "text",
+        "id": "section_subtitle",
+        "label": "Subtítulo",
+        "default": "Compra por metro ²"
+      },
+      {
+        "type": "range",
+        "id": "max_installments",
+        "label": "Número máximo de parcelas",
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "default": 5
+      }
+    ],
     "presets": [
       {
         "name": "Home Película Residencial",

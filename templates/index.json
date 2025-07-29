@@ -68,6 +68,16 @@
         "accessibility_info": "Apresentação de slides sobre nossa marca"
       }
     },
+    "home_pelicula_automotiva_WJ7z9C": {
+      "type": "home-pelicula-automotiva",
+      "name": "Home Película automotiva",
+      "settings": {}
+    },
+    "home_pelicula_residencial_k3CRVK": {
+      "type": "home-pelicula-residencial",
+      "name": "Home Película Residencial",
+      "settings": {}
+    },
     "featured_product_APb9aQ": {
       "type": "featured-product",
       "blocks": {
@@ -469,6 +479,8 @@
   },
   "order": [
     "slideshow_Kr6LMU",
+    "home_pelicula_automotiva_WJ7z9C",
+    "home_pelicula_residencial_k3CRVK",
     "featured_product_APb9aQ",
     "custom_liquid_hyaerH",
     "collection_list_8MPCbd",

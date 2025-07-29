@@ -76,7 +76,12 @@
     "home_pelicula_residencial_k3CRVK": {
       "type": "home-pelicula-residencial",
       "name": "Home Película Residencial",
-      "settings": {}
+      "settings": {
+        "featured_product": "pelicula-filme-nano-ceramica-automotiva-termica-conversivel-coupe-kit-apenas-parabrisa",
+        "section_title": "Película Nano Cerâmica Residencial",
+        "section_subtitle": "Compra por metro ²",
+        "max_installments": 5
+      }
     },
     "featured_product_APb9aQ": {
       "type": "featured-product",

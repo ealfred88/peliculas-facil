@@ -55,7 +55,7 @@
   .variant-item:last-child {
     border-bottom: none;
   }
-  .variante-item {
+  .variant-item {
     margin-bottom: 12px;
   }
   .variant-number {
@@ -90,16 +90,30 @@
     border-radius: 4px;
     font-size: 14px;
   }
-  .variant-remove {
-    width: 32px;
-    height: 40px;
-    color: #ff4444;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    margin-left: 16px;
+  .variant-add-btn {
+    background: #5ABB46;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+  }
+  .variant-add-btn:hover {
+    background: #4A9B3A;
+  }
+  .variant-add-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  .variant-add-btn.added {
+    background: #28a745;
+  }
+  .variant-add-btn.added:after {
+    content: " ✓";
   }
   .add-variant-btn {
     text-decoration: underline;
@@ -218,49 +232,75 @@
           <small style="font-size: 14px; color: #000; font-weight: 400;">em até {{ max_installments }}x <b>sem juros</b></small>
         </div>
         
-        <form action="{{ routes.cart_add_url }}" method="post" id="variant-form">
-          <div class="variant-list" id="variant-list">
-            <div class="d-flex justify-content-center align-items-end variante-item" data-variant-index="1">
-              <div class="variant-number">1</div>
-              <div class="variant-options">
-                <div class="variant-option">
-                  <label>Largura:</label>
-                  <select name="largura_1" data-option="largura">
-                    {% for option in target_product.options %}
-                      {% if option contains 'Largura' or option contains 'largura' %}
-                        {% for value in target_product.options[forloop.index0].values %}
-                          <option value="{{ value }}">{{ value }}</option>
-                        {% endfor %}
-                      {% else %}
-                        <option value="1,42 m">1,42 m</option>
-                        <option value="1,52 m">1,52 m</option>
+        <form action="{{ routes.cart_add_url }}" method="post" id="variant-form" style="display: none;">
+          <!-- Formulário oculto para submissão individual -->
+          <input type="hidden" name="id" value="{{ target_product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="properties[Largura]" value="" id="hidden-largura">
+          <input type="hidden" name="properties[Altura]" value="" id="hidden-altura">
+          <input type="hidden" name="properties[Quantidade]" value="" id="hidden-quantidade">
+          <input type="hidden" name="properties[Tonalidade]" value="" id="hidden-tonalidade">
+        </form>
+
+        <!-- Formulário de fallback tradicional -->
+        <form action="{{ routes.cart_add_url }}" method="post" id="fallback-form" style="display: none;">
+          <input type="hidden" name="id" value="{{ target_product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="properties[Largura]" value="" id="fallback-largura">
+          <input type="hidden" name="properties[Altura]" value="" id="fallback-altura">
+          <input type="hidden" name="properties[Quantidade]" value="" id="fallback-quantidade">
+          <input type="hidden" name="properties[Tonalidade]" value="" id="fallback-tonalidade">
+          <button type="submit" style="display: none;" id="fallback-submit"></button>
+        </form>
+
+        <div class="variant-list" id="variant-list">
+          <div class="d-flex justify-content-center align-items-end variant-item" data-variant-index="1">
+            <div class="variant-number">1</div>
+            <div class="variant-options">
+              <div class="variant-option">
+                <label>Largura:</label>
+                <select name="largura_1" data-option="largura" data-index="1">
+                  {% for option in target_product.options %}
+                    {% if option contains 'Largura' or option contains 'largura' %}
+                      {% for value in target_product.options[forloop.index0].values %}
+                        <option value="{{ value }}">{{ value }}</option>
+                      {% endfor %}
+                    {% else %}
+                      <option value="1,42 m">1,42 m</option>
+                      <option value="1,52 m">1,52 m</option>
+                    {% endif %}
+                    {% break %}
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="variant-option">
+                <label>Altura:</label>
+                <select name="altura_1" data-option="altura" data-index="1">
+                  <option value="50 cm">50 cm</option>
+                  <option value="60 cm">60 cm</option>
+                  <option value="70 cm">70 cm</option>
+                  <option value="80 cm">80 cm</option>
+                  <option value="90 cm">90 cm</option>
+                  <option value="100 cm">100 cm</option>
+                </select>
+              </div>
+              <div class="variant-option">
+                <label>Quantidade:</label>
+                <select name="quantidade_1" data-option="quantidade" data-index="1">
+                  {% for i in (1..20) %}
+                    <option value="{{ i }}" {% if i == 1 %}selected{% endif %}>{{ i }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="variant-option">
+                <label>Tonalidade:</label>
+                <select name="tonalidade_1" data-option="tonalidade" data-index="1">
+                  {% if section.blocks.size > 0 %}
+                    {% for block in section.blocks %}
+                      {% if block.type == 'tonalidade' %}
+                        <option value="{{ block.settings.value }}">{{ block.settings.label }}</option>
                       {% endif %}
-                      {% break %}
                     {% endfor %}
-                  </select>
-                </div>
-                <div class="variant-option">
-                  <label>Altura:</label>
-                  <select name="altura_1" data-option="altura">
-                    <option value="50 cm">50 cm</option>
-                    <option value="60 cm">60 cm</option>
-                    <option value="70 cm">70 cm</option>
-                    <option value="80 cm">80 cm</option>
-                    <option value="90 cm">90 cm</option>
-                    <option value="100 cm">100 cm</option>
-                  </select>
-                </div>
-                <div class="variant-option">
-                  <label>Quantidade:</label>
-                  <select name="quantidade_1" data-option="quantidade">
-                    {% for i in (1..20) %}
-                      <option value="{{ i }}" {% if i == 10 %}selected{% endif %}>{{ i }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="variant-option">
-                  <label>Tonalidade:</label>
-                  <select name="tonalidade_1" data-option="tonalidade">
+                  {% else %}
+                    {% comment %} Fallback: usar variantes do produto ou valores padrão {% endcomment %}
                     {% for variant in target_product.variants limit: 5 %}
                       {% if variant.title != 'Default Title' %}
                         <option value="{{ variant.title }}">{{ variant.title }}</option>
@@ -270,16 +310,15 @@
                         <option value="G 70">G 70</option>
                       {% endif %}
                     {% endfor %}
-                  </select>
-                </div>
+                  {% endif %}
+                </select>
               </div>
-              <div class="variant-remove" onclick="removeVariant(1)">×</div>
             </div>
+            <button type="button" class="variant-add-btn" onclick="addToCart(1)" id="add-btn-1">
+              Adicionar
+            </button>
           </div>
-          
-          <div class="add-variant-btn" onclick="addVariant()">
-            Incluir novo item
-          </div>
+        </div>
           
           <div class="variant-summary d-flex justify-content-between">
             <div class="variant-summary-row variant-summary-row-price d-flex flex-column col-4">
@@ -287,23 +326,20 @@
               <span id="valor-m2"><b>R$ {{ target_product.price | money_without_currency }}</b></span>
             </div>
             <div class="variant-summary-row variant-summary-row-quantity justify-content-start d-flex flex-column col-4">
-              <span>Total itens:</span>
-              <span id="total-itens"><b>1</b></span>
+              <span>Total no carrinho:</span>
+              <span id="total-carrinho"><b>0</b></span>
             </div>
             <div class="variant-summary-total d-flex flex-column col-4">
-              <span>Valor total:</span>
-              <span id="valor-total">R$ {{ target_product.price | money_without_currency }}</span>
-              <span class="condicao-parcela">Em até {{ max_installments }}x de R$ <span id="parcela">{{ target_product.price | divided_by: max_installments | money_without_currency }}</span> sem juros</span>
+              <span>Valor total carrinho:</span>
+              <span id="valor-total-carrinho">R$ 0,00</span>
+              <span class="condicao-parcela">Em até {{ max_installments }}x de R$ <span id="parcela-carrinho">0,00</span> sem juros</span>
             </div>
           </div>
           
           <div class="action-buttons">
-            <button type="submit" class="btn-comprar">Comprar</button>
+            <button type="button" class="btn-comprar" onclick="openCart()">Ver Carrinho</button>
             <a href="{{ target_product.url }}" class="btn-detalhes">Ver mais detalhes</a>
           </div>
-          
-          <input type="hidden" name="id" value="{{ target_product.selected_or_first_available_variant.id }}" id="selected-variant-id">
-        </form>
       </div>
     </div>
   {% else %}
@@ -315,14 +351,161 @@
 
 <script>
   let variantCounter = 1;
+  let cartTotal = 0;
+  let cartItems = 0;
   const basePrice = {{ target_product.price | default: 8990 }};
   const maxInstallments = {{ max_installments }};
+  const variantId = "{{ target_product.selected_or_first_available_variant.id }}";
   
-  function addVariant() {
+  // Tonalidades configuradas no schema
+  const tonalidadeOptions = [
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        {% if block.type == 'tonalidade' %}
+          { value: "{{ block.settings.value }}", label: "{{ block.settings.label }}" }{% unless forloop.last %},{% endunless %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      { value: "G 35", label: "G 35" },
+      { value: "G 50", label: "G 50" },
+      { value: "G 70", label: "G 70" }
+    {% endif %}
+  ];
+  
+  // Debug imediato
+  console.log('Configuração inicial:', {
+    variantId,
+    basePrice,
+    maxInstallments,
+    product: '{{ target_product.title | default: "Não encontrado" }}'
+  });
+
+  function addToCart(index) {
+    const variant = document.querySelector(`[data-variant-index="${index}"]`);
+    const button = document.getElementById(`add-btn-${index}`);
+    
+    if (!variant || button.disabled) return;
+    
+    // Pegar valores do item
+    const largura = variant.querySelector('[data-option="largura"]').value;
+    const altura = variant.querySelector('[data-option="altura"]').value;
+    const quantidade = parseInt(variant.querySelector('[data-option="quantidade"]').value);
+    const tonalidade = variant.querySelector('[data-option="tonalidade"]').value;
+    
+    // Calcular área e valor
+    const larguraNum = parseFloat(largura.replace(/[^\d,]/g, '').replace(',', '.')) || 1.42;
+    const alturaNum = parseFloat(altura.replace(/[^\d]/g, '')) / 100 || 0.5;
+    const area = larguraNum * alturaNum;
+    const itemValue = area * (basePrice / 100) * quantidade;
+    
+    // Debug - verificar valores
+    console.log('Dados do produto:', {
+      largura: largura,
+      altura: altura,
+      quantidade: quantidade,
+      tonalidade: tonalidade,
+      area: area,
+      itemValue: itemValue,
+      variantId: variantId
+    });
+    
+    // Preencher formulário oculto com quantidade como 1 (sempre)
+    document.getElementById('hidden-largura').value = largura;
+    document.getElementById('hidden-altura').value = altura;
+    document.getElementById('hidden-quantidade').value = quantidade;
+    document.getElementById('hidden-tonalidade').value = tonalidade;
+    
+    // Desabilitar botão e mostrar como adicionado
+    button.disabled = true;
+    button.textContent = 'Adicionando...';
+    
+    // Submeter formulário via AJAX
+    submitToCart(index, itemValue, quantidade);
+  }
+  
+  function submitToCart(index, itemValue, quantidade) {
+    const formData = new FormData(document.getElementById('variant-form'));
+    
+    // Primeiro, tentar com fetch/AJAX
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: variantId,
+        quantity: 1,
+        properties: {
+          'Largura': formData.get('properties[Largura]'),
+          'Altura': formData.get('properties[Altura]'),
+          'Quantidade': formData.get('properties[Quantidade]'),
+          'Tonalidade': formData.get('properties[Tonalidade]')
+        }
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na resposta: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Item adicionado ao carrinho via AJAX:', data);
+      handleCartSuccess(index, itemValue, quantidade);
+    })
+    .catch(error => {
+      console.error('Erro ao adicionar via AJAX, tentando método tradicional:', error);
+      
+      // Fallback: usar formulário tradicional
+      const fallbackForm = document.getElementById('fallback-form');
+      document.getElementById('fallback-largura').value = formData.get('properties[Largura]');
+      document.getElementById('fallback-altura').value = formData.get('properties[Altura]');
+      document.getElementById('fallback-quantidade').value = formData.get('properties[Quantidade]');
+      document.getElementById('fallback-tonalidade').value = formData.get('properties[Tonalidade]');
+      
+      // Submeter formulário tradicional
+      fallbackForm.submit();
+      
+      // Simular sucesso para o UI (será confirmado no reload da página)
+      handleCartSuccess(index, itemValue, quantidade);
+    });
+  }
+  
+  function handleCartSuccess(index, itemValue, quantidade) {
+    // Atualizar botão como sucesso
+    const button = document.getElementById(`add-btn-${index}`);
+    button.textContent = 'Adicionado';
+    button.classList.add('added');
+    
+    // Atualizar totais do carrinho
+    cartItems += quantidade;
+    cartTotal += itemValue;
+    updateCartSummary();
+
+    // Adicionar nova linha automaticamente
+    setTimeout(() => {
+      addNewVariant();
+    }, 500);
+    
+    // Publicar evento para notificar outros componentes
+    if (typeof window.dispatchEvent === 'function') {
+      window.dispatchEvent(new CustomEvent('cart:updated'));
+    }
+    
+    // Tentar atualizar badge do carrinho se existir
+    const cartCount = document.querySelector('.cart-count-bubble');
+    if (cartCount) {
+      const currentCount = parseInt(cartCount.textContent) || 0;
+      cartCount.textContent = currentCount + 1;
+    }
+    document.querySelector('cart-drawer').open();
+  }
+  
+  function addNewVariant() {
     variantCounter++;
     const variantList = document.getElementById('variant-list');
     const newVariant = document.createElement('div');
-    newVariant.className = 'variante-item d-flex justify-content-center align-items-end';
+    newVariant.className = 'variant-item d-flex justify-content-center align-items-end';
     newVariant.setAttribute('data-variant-index', variantCounter);
     
     newVariant.innerHTML = `
@@ -330,14 +513,14 @@
       <div class="variant-options">
         <div class="variant-option">
           <label>Largura:</label>
-          <select name="largura_${variantCounter}" data-option="largura" onchange="updateTotal()">
+          <select name="largura_${variantCounter}" data-option="largura" data-index="${variantCounter}">
             <option value="1,42 m">1,42 m</option>
             <option value="1,52 m">1,52 m</option>
           </select>
         </div>
         <div class="variant-option">
           <label>Altura:</label>
-          <select name="altura_${variantCounter}" data-option="altura" onchange="updateTotal()">
+          <select name="altura_${variantCounter}" data-option="altura" data-index="${variantCounter}">
             <option value="50 cm">50 cm</option>
             <option value="60 cm">60 cm</option>
             <option value="70 cm">70 cm</option>
@@ -348,63 +531,54 @@
         </div>
         <div class="variant-option">
           <label>Quantidade:</label>
-          <select name="quantidade_${variantCounter}" data-option="quantidade" onchange="updateTotal()">
-            ${Array.from({length: 20}, (_, i) => `<option value="${i+1}" ${i === 9 ? 'selected' : ''}>${i+1}</option>`).join('')}
+          <select name="quantidade_${variantCounter}" data-option="quantidade" data-index="${variantCounter}">
+            ${Array.from({length: 20}, (_, i) => `<option value="${i+1}" ${i === 0 ? 'selected' : ''}>${i+1}</option>`).join('')}
           </select>
         </div>
         <div class="variant-option">
           <label>Tonalidade:</label>
-          <select name="tonalidade_${variantCounter}" data-option="tonalidade" onchange="updateTotal()">
-            <option value="G 35">G 35</option>
-            <option value="G 50">G 50</option>
-            <option value="G 70">G 70</option>
+          <select name="tonalidade_${variantCounter}" data-option="tonalidade" data-index="${variantCounter}">
+            ${tonalidadeOptions.map(option => `<option value="${option.value}">${option.label}</option>`).join('')}
           </select>
         </div>
       </div>
-      <div class="variant-remove" onclick="removeVariant(${variantCounter})">×</div>
+      <button type="button" class="variant-add-btn" onclick="addToCart(${variantCounter})" id="add-btn-${variantCounter}">
+        Adicionar
+      </button>
     `;
     
     variantList.appendChild(newVariant);
-    updateTotal();
   }
   
-  function removeVariant(index) {
-    const variants = document.querySelectorAll('.variant-item');
-    if (variants.length > 1) {
-      document.querySelector(`[data-variant-index="${index}"]`).remove();
-      updateTotal();
-    }
+  function updateCartSummary() {
+    document.getElementById('total-carrinho').innerHTML = `<b>${cartItems}</b>`;
+    document.getElementById('valor-total-carrinho').textContent = `R$ ${cartTotal.toFixed(2).replace('.', ',')}`;
+    document.getElementById('parcela-carrinho').textContent = `${(cartTotal / maxInstallments).toFixed(2).replace('.', ',')}`;
   }
   
-  function updateTotal() {
-    const variants = document.querySelectorAll('.variant-item');
-    let totalItems = 0;
-    let totalValue = 0;
-    
-    variants.forEach(variant => {
-      const quantidade = parseInt(variant.querySelector('[data-option="quantidade"]').value) || 1;
-      const largura = parseFloat(variant.querySelector('[data-option="largura"]').value.replace(/[^\d,]/g, '').replace(',', '.')) || 1.42;
-      const altura = parseFloat(variant.querySelector('[data-option="altura"]').value.replace(/[^\d]/g, '')) / 100 || 0.5;
-      
-      const area = largura * altura;
-      const itemValue = area * (basePrice / 100);
-      
-      totalItems += quantidade;
-      totalValue += itemValue * quantidade;
-    });
-    
-    document.getElementById('total-itens').textContent = totalItems;
-    document.getElementById('valor-total').textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
-    document.getElementById('parcela').textContent = `${(totalValue / maxInstallments).toFixed(2).replace('.', ',')}`;
-  }
-  
-  // Adicionar event listeners para os selects iniciais
+  // Inicialização e debug
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('select[data-option]').forEach(select => {
-      select.addEventListener('change', updateTotal);
+    updateCartSummary();
+    
+    // Debug: verificar se o produto existe
+    console.log('Produto configurado:', {
+      variantId: variantId,
+      basePrice: basePrice,
+      maxInstallments: maxInstallments
     });
-    updateTotal();
+    
+    // Verificar se as rotas do Shopify estão disponíveis
+    console.log('Rotas do Shopify:', {
+      cartAddUrl: '{{ routes.cart_add_url }}',
+      cartUrl: '{{ routes.cart_url }}'
+    });
+    
+    // Adicionar listener para eventos de carrinho
+    window.addEventListener('cart:updated', function() {
+      console.log('Carrinho atualizado!');
+    });
   });
+  
 </script>
 
 {% schema %}
@@ -440,10 +614,55 @@
         "default": 5
       }
     ],
+    "blocks": [
+      {
+        "type": "tonalidade",
+        "name": "Tonalidade",
+        "settings": [
+          {
+            "type": "text",
+            "id": "value",
+            "label": "Valor da Tonalidade",
+            "info": "Valor que será enviado no formulário (ex: G 35, G 50)",
+            "placeholder": "G 35"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Nome Exibido",
+            "info": "Nome que aparecerá no dropdown para o cliente",
+            "placeholder": "G 35"
+          }
+        ]
+      }
+    ],
     "presets": [
       {
         "name": "Home Película Residencial",
-        "category": "Custom"
+        "category": "Custom",
+        "blocks": [
+          {
+            "type": "tonalidade",
+            "settings": {
+              "value": "G 35",
+              "label": "G 35"
+            }
+          },
+          {
+            "type": "tonalidade",
+            "settings": {
+              "value": "G 50",
+              "label": "G 50"
+            }
+          },
+          {
+            "type": "tonalidade",
+            "settings": {
+              "value": "G 70",
+              "label": "G 70"
+            }
+          }
+        ]
       }
     ]
   }

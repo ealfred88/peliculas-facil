@@ -1,16 +1,45 @@
 {% style %}
-
+.carousel-slider .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  height: auto;
+  padding: 12px;
+}
+.carousel-slider .swiper-button-prev {
+  display: flex;
+  background-color: #215aa8;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  left: 0;
+  width: 22px;
+  height: 44px;
+}
+.carousel-slider .swiper-button-next {
+  display: flex;
+  background-color: #215AA8;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  right: 0;
+  width: 22px;
+  height: 44px;
+}
+.carousel-slider .swiper-button-next:after,
+.carousel-slider .swiper-button-prev:after {
+  font-size: 18px;
+  color: #fff;
+}
 {% endstyle %}
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
 
-<!-- Slider main container -->
-<div class="swiper">
-  <!-- Additional required wrapper -->
+<div class="container">
+<div class="swiper carousel-slider">
   <div class="swiper-wrapper">
-    <!-- Slides -->
     {% for block in section.blocks %}
       <div class="swiper-slide">
         {% if block.settings.image_link != blank %}
@@ -18,9 +47,10 @@
         {% endif %}
         {{
           block.settings.image
-          | image_url: 
-            width: 320, 
-            height: 80
+          | image_url:
+            width: 160,
+            height: 80,
+            crop: 'center'
           | image_tag:
             class: 'image-slider'
         }}
@@ -29,38 +59,55 @@
         {% endif %}
       </div>
     {% endfor %}
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
-    ...
   </div>
-  <!-- If we need pagination -->
-  <div class="swiper-pagination"></div>
-
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-
-  <!-- If we need scrollbar -->
-  <div class="swiper-scrollbar"></div>
+  <div class="swiper-button swiper-button-prev"></div>
+  <div class="swiper-button swiper-button-next"></div>
 </div>
-{% javascript %}
-const swiper = new Swiper('.swiper', {
-  speed: 400,
-  slidesPerView: 6,
-  spaceBetween: 15,
-});
-{% endjavascript %}
+</div>
+
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% javascript %}
+  window.addEventListener('load', function() {
+    const swiper = new Swiper('.carousel-slider', {
+      speed: 400,
+      slidesPerView: 6,
+      spaceBetween: 15,
+      navigation: {
+          nextEl: '.carousel-slider .swiper-button-next',
+          prevEl: '.carousel-slider .swiper-button-prev',
+      },
+      breakpoints: {
+          0: {
+            slidesPerView: 2
+          },
+          1024: {
+            slidesPerView: 6
+          }
+      }
+    });
+  });
+{% endjavascript %}
+
 {% schema %}
 {
-  "name": "Slider Simples de Imagens",
+  "name": "Slider de Imagens",
   "max_blocks": 24,
   "class": "section",
   "tag": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "label": "Slides Per View"
+    }
+  ],
   "blocks": [    
     {
       "type": "imagem",
@@ -81,7 +128,7 @@ const swiper = new Swiper('.swiper', {
   ],
   "presets": [
     {
-      "name": "Slider Simples de Imagens",
+      "name": "Slider de Imagens",
       "category": "Imagens"
     }
   ]

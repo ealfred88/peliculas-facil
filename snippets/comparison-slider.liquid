@@ -9,6 +9,13 @@
     outline-offset: 0;
     box-shadow: unset;
   }
+  .slider-relative-size {
+    --default-handle-width: 100px;
+  }
+  .slider-relative-size:hover {
+    --default-handle-width: 120px;
+    transition: ease .2s;
+  }
 {%- endstyle -%}
 <div class="comparison-slider">
   <div class="container">
@@ -22,7 +29,7 @@
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
         />
-        <img-comparison-slider>
+        <img-comparison-slider class="slider-relative-size">
           <img slot="first" src="{{ 'compara-slider-01.jpg' | asset_url }}" width="1800" height="600"/>
           <img slot="second" src="{{ 'compara-slider-02.jpg' | asset_url }}" width="1800" height="600"/>
         </img-comparison-slider>

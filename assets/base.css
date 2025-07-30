@@ -86,6 +86,10 @@
   padding: 0 1.5rem;
 }
 
+body {
+  --font-body-weight: 300;
+}
+
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
 }
@@ -653,6 +657,19 @@ h3 .icon-arrow,
 .svg-wrapper > svg {
   height: 100%;
   width: 100%;
+}
+
+.section .button.button--primary {
+  background-color: #5abb46;
+  border: 0;
+  color: #fff;
+  border-radius: 7px;
+}
+.section .button.button--primary:after {
+  box-shadow: none!important;
+}
+.section h2.inline-richtext, .section h3.inline-richtext {
+  font-weight: 500;
 }
 
 /* base-details-summary */
@@ -2476,6 +2493,12 @@ input[type='checkbox'] {
   width: 100%;
   display: inline-block;
   transition: width 0.3s cubic-bezier(0.52, 0, 0.61, 0.99);
+}
+
+@media (max-width: 1400px) {
+  .header__heading-logo {
+    width: 190px;
+  }
 }
 
 @media screen and (max-width: 989px) {

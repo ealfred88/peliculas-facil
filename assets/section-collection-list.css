@@ -19,8 +19,8 @@
   }
 
   .section-collection-list .collection-list:not(.slider) {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -51,9 +51,26 @@
 }
 
 @media screen and (max-width: 989px) {
+
   .collection-list.slider .collection-list__item {
     max-width: 100%;
   }
+  .collection-list .grid__item {
+    width: 100%;
+    max-width: 100%;
+  }
+  .collection-list__item .card .card__content {
+    justify-content: flex-start;
+    width: 70%;
+  }
+  .collection-list__item .card .card__information {
+    padding: 25px!important;
+  }
+  .collection-list__item .card .card__heading {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
 }
 
 .collection-list-view-all {

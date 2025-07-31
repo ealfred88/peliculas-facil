@@ -1,5 +1,8 @@
 {%- style -%}
-  img-comparison-slider,
+  img-comparison-slider {
+    max-width: 100%;
+    height: auto;
+  }
   img-comparison-slider img {
     max-width: 100%;
     height: auto;
@@ -16,6 +19,13 @@
     --default-handle-width: 120px;
     transition: ease .2s;
   }
+  @media (max-width: 767px) {
+    img-comparison-slider img {
+      max-width: 340%;
+      margin: 0 -120%;
+    }
+  }
+  
 {%- endstyle -%}
 <div class="comparison-slider">
   <div class="container">

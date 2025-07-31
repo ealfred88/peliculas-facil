@@ -5,9 +5,20 @@
   z-index: auto;
   isolation: isolate;
 }
-
 .banner__box {
   text-align: center;
+}
+.banner__content {
+  z-index: 4;
+}
+.banner__media {
+  border-radius: 20px;
+}
+.banner__heading {
+  color: #fff;
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 12px;
 }
 
 /* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
@@ -263,6 +274,31 @@
 
   .banner--stacked .banner__media-image-half {
     width: 100%;
+  }
+  .banner__media a {
+    position: static!important;
+    aspect-ratio: 1/1;
+    display: flex!important;
+    justify-content: center;
+  }
+  .banner__media img {
+    width: auto;
+    height: 100%;
+  }
+  .banner .banner__content {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .banner .banner__content .banner__box {
+    padding: 25px;
+  }
+  .banner .banner__content .banner__heading {
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+  .banner__media:before {
+    padding-bottom: 0!important;
   }
 }
 

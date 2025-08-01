@@ -49,3 +49,9 @@
     margin: 0 0 0 1rem;
   }
 }
+
+@media screen and (max-width: 749px) {
+  .newsletter {
+    max-width: calc(100vw - 24px);
+  }
+}

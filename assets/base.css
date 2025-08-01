@@ -88,6 +88,10 @@
 
 @media screen and (max-width: 749px) {
   main .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #MainContent {
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -738,10 +742,6 @@ summary::-webkit-details-marker {
 .placeholder-svg {
   height: 100%;
   width: 100%;
-}
-
-.video-player {
-  max-width: 100%;
 }
 
 /* base-focus */
@@ -2405,6 +2405,9 @@ input[type='checkbox'] {
   .header--has-app {
     grid-template-columns: auto 1fr auto;
   }
+  .announcement-bar__message {
+    padding: 4px 0;
+  }
 }
 
 @media screen and (min-width: 990px) {
@@ -2806,6 +2809,37 @@ details[open] > .header__submenu {
     transform: translateY(0);
   }
 }
+
+/* Breadcrumb */
+.breadcrumb-section {
+  background-color: #215aa8;
+}
+
+@media screen and (max-width: 749px) {
+  .breadcrumb-section {
+    overflow-x: scroll;
+  }
+  .breadcrumb-section .breadcrumbs {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    align-items: center;
+    padding: 2px 6px;
+    margin: 0;
+  }
+  .breadcrumb-section .breadcrumb-delimeter {
+    display: flex;
+    align-items: center;
+  }
+  .breadcrumb-section .breadcrumb-delimeter:not(:last-child):after {
+    font-size: 13px;
+  }
+  .breadcrumb-section .breadcrumbs:empty {
+    display: none;
+  }
+}
+
+
 
 /* Header menu */
 .header__inline-menu {

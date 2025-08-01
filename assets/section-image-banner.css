@@ -8,13 +8,16 @@
 .banner__box {
   text-align: center;
 }
-.banner__content {
+#Banner-template--19673059918038__image_banner_RVbW8W .banner__content,
+#Banner-template--19673059918038__image_banner_XjrzKR .banner__content {
   z-index: 4;
 }
-.banner__media {
+#Banner-template--19673059918038__image_banner_RVbW8W .banner__media,
+#Banner-template--19673059918038__image_banner_XjrzKR .banner__media {
   border-radius: 20px;
 }
-.banner__heading {
+#Banner-template--19673059918038__image_banner_RVbW8W .banner__heading,
+#Banner-template--19673059918038__image_banner_XjrzKR .banner__heading {
   color: #fff;
   font-size: 28px;
   text-transform: uppercase;
@@ -275,29 +278,36 @@
   .banner--stacked .banner__media-image-half {
     width: 100%;
   }
-  .banner__media a {
+
+  #Banner-template--19673059918038__image_banner_RVbW8W .banner__media a,
+  #Banner-template--19673059918038__image_banner_XjrzKR .banner__media a {
     position: static!important;
     aspect-ratio: 1/1;
     display: flex!important;
     justify-content: center;
   }
-  .banner__media img {
+  #Banner-template--19673059918038__image_banner_RVbW8W .banner__media img,
+  #Banner-template--19673059918038__image_banner_XjrzKR .banner__media img {
     width: auto;
     height: 100%;
   }
-  .banner .banner__content {
+  #Banner-template--19673059918038__image_banner_RVbW8W .banner__content,
+  #Banner-template--19673059918038__image_banner_XjrzKR .banner__content {
     position: absolute;
     left: 0;
     bottom: 0;
   }
-  .banner .banner__content .banner__box {
+  #Banner-template--19673059918038__image_banner_RVbW8W .banner__content .banner__box,
+  #Banner-template--19673059918038__image_banner_XjrzKR .banner__content .banner__box {
     padding: 25px;
   }
-  .banner .banner__content .banner__heading {
+  #Banner-template--19673059918038__image_banner_RVbW8W .banner__content .banner__heading,
+  #Banner-template--19673059918038__image_banner_XjrzKR .banner__content .banner__heading {
     font-size: 24px;
     letter-spacing: 4px;
   }
-  .banner__media:before {
+  #Banner-template--19673059918038__image_banner_RVbW8W .banner__media:before,
+  #Banner-template--19673059918038__image_banner_XjrzKR .banner__media:before {
     padding-bottom: 0!important;
   }
 }

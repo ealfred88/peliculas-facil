@@ -77,9 +77,32 @@
     rgba(var(--color-shadow), var(--media-shadow-opacity));
 }
 
+.collection-hero__title {
+  font-size: 24px;
+  color: #fff;
+}
+.collection-hero__text-wrapper .collection-hero__description {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
 @media screen and (max-width: 749px) {
+  .collection-hero__title {
+    font-size: 20px;
+  }
   .collection-hero__image-container {
-    height: 20rem;
+    height: 17rem;
+  }
+  .collection-hero--with-image .collection-hero__inner {
+    padding-bottom: 0!important;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  .collection-hero__text-wrapper .collection-hero__description {
+    font-size: 14px;
   }
 }
 

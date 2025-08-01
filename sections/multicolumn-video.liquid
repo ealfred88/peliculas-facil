@@ -10,13 +10,14 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  @media screen and (max-width: 767px) {
-    .video-player {
-      width: auto;
-      height: 300px;
-    }
+  .video-player {
+    border-radius: 12px;
+    aspect-ratio: 360 / 640;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
   }
+
 {%- endstyle -%}
 <div class="multicolumn-video">
   <div class="container section-{{ section.id }}-padding">

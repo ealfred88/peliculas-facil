@@ -6,18 +6,24 @@
   --swiper-pagination-color: #fff;
   --swiper-pagination-bullet-inactive-color: #fff;
   --swiper-pagination-bullet-size: 12px;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
 }
-.banner-image-slider {
+.banner-slider .banner-image-slider {
   display: block;
   max-width: 100%;
   width: 100%;
   height: auto;
 }
+.banner-slider .swiper-pagination-bullet-active {
+  width: 25px;
+  border-radius: 15px;
+}
+.banner-slider .swiper-pagination-bullet {
+  transition: 0.3s ease;
+}
 {% endstyle %}
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
 <div class="container g-lg-0">
 <div class="swiper banner-slider">
@@ -50,7 +56,8 @@
 </div>
 </div>
 
-<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
 {% javascript %}
   window.addEventListener('load', function() {
     const swiper = new Swiper('.banner-slider', {

@@ -2513,6 +2513,12 @@ input[type='checkbox'] {
     width: 190px;
   }
 }
+@media (max-width: 749px) {
+  .header__heading-logo {
+    width: 210px;
+    max-width: 210px;
+  }
+}
 
 @media screen and (max-width: 989px) {
   .header__heading,

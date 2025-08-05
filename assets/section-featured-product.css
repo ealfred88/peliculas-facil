@@ -67,6 +67,11 @@
     padding: 0 7rem;
   }
 
+  .product:not(.product--columns) .product__media-list .product__media-item:first-child {
+    width: inherit;
+    max-width: 100%;
+  }
+
   .background-secondary .featured-product {
     padding: 6rem 7rem;
     position: relative;

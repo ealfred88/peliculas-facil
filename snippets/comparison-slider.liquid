@@ -14,10 +14,22 @@
   }
   .slider-relative-size {
     --default-handle-width: 100px;
+    animation: moveArrow 1s ease-in-out infinite alternate;
   }
   .slider-relative-size:hover {
     --default-handle-width: 120px;
     transition: ease .2s;
+  }
+  .default-handle {
+    animation: moveArrow 1s ease-in-out infinite alternate;
+  }
+  @keyframes moveArrow {
+    from {
+      --default-handle-width: 100px;
+    }
+    to {
+      --default-handle-width: 120px;
+    }
   }
   @media (max-width: 767px) {
     img-comparison-slider img {
@@ -40,8 +52,8 @@
           href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
         />
         <img-comparison-slider class="slider-relative-size">
-          <img slot="first" src="{{ 'compara-slider-01.jpg' | asset_url }}" width="1800" height="600"/>
-          <img slot="second" src="{{ 'compara-slider-02.jpg' | asset_url }}" width="1800" height="600"/>
+          <img slot="first" src="{{ 'compara-image-slider-01.jpg' | asset_url }}" width="1800" height="600"/>
+          <img slot="second" src="{{ 'compara-image-slider-02.jpg' | asset_url }}" width="1800" height="600"/>
         </img-comparison-slider>
       </div>
     </div>

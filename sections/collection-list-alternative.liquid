@@ -1,0 +1,157 @@
+<section class="section colmarg" data-section-id="{{ section.id }}" data-section-type="collection-list">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <header class="section__header">
+        <h2 class="section__title heading h3">{{ section.settings.title | escape }}</h2>
+
+        {%- if section.settings.link_title != blank and section.settings.link != blank -%}
+          <a href="{{ section.settings.link }}" class="section__action-link link">{{ section.settings.link_title | escape }} </a>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    <div class="scroller">
+      <div class="scroller__inner">
+        <div class="collection-list"> 
+          {%- for block in section.blocks -%}
+            {%- assign collection = block.settings.collection -%}
+
+            <a href="{{ block.settings.link | default: collection.url | default: '#' }}" class="collection-item" data-collection-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              {%- unless collection == blank -%}
+                {%- assign collection_image = block.settings.image | default: collection.image | default: collection.products.first.featured_image -%}
+
+                <div class="collection-item__image-wrapper {% if section.settings.round_images %}collection-item__image-wrapper--rounded{% endif %}">
+                  
+                  {%- assign image_url = collection_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                  <div class="aspect-ratio" style="padding-bottom: 100%">
+                    <img class="image--fade-in" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" alt="{{ collection_image.alt | escape }}" width="200" height="75">
+
+                    <noscript>
+                      <img src="{{ collection_image | img_url: '450x' }}" alt="{{ collection_image.alt | escape }}" width="200" height="75">
+                    </noscript>
+                  </div>
+                </div>
+
+                {%- if section.settings.show_collection_title -%}
+                  <span class="collection-item__title text--strong">{{ collection.title }} </span>
+                {%- endif -%}
+              {%- else -%}
+                <div class="collection-item__image-wrapper {% if section.settings.round_images %}collection-item__image-wrapper--rounded{% endif %}">
+                  {%- capture placeholder -%}{% cycle 'collection-1', 'collection-2', 'collection-3', 'collection-4', 'collection-5', 'collection-6' %}{%- endcapture -%}
+                  {{- placeholder | placeholder_svg_tag: 'placeholder-svg' -}}
+                </div>
+
+                {%- if section.settings.show_collection_title -%}
+                  <span class="collection-item__title text--strong">{{ 'onboarding.collection_title' | t }} </span>
+                {%- endif -%}
+              {%- endunless -%}
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.sombra_colecao -%}
+    <style>.collection-item__image-wrapper--rounded {
+      box-shadow: none !important;
+    }</style>
+  {%- endif -%}
+</section>
+
+
+{% schema %}
+{
+  "name": "Lista de coleções",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Nossas coleções"
+    },
+    {
+      "type": "text",
+      "id": "link_title",
+      "label": "Título do link",
+      "default": "Ver todos"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link",
+      "default": "/collections"
+    },
+    {
+      "type": "checkbox",
+      "id": "round_images",
+      "label": "Imagens redondas",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_title",
+      "label": "Mostrar título da coleção",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sombra_colecao",
+      "label": "Desabilitar sombras nas capas de coleção",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Coleção",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Coleção"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem",
+          "info": "600 x 600px .jpg recomendado"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "URL da coleção usado se nenhum link for atribuído."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Lista de coleções",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

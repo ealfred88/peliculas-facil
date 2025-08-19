@@ -326,11 +326,11 @@
               <span id="valor-m2"><b>R$ {{ target_product.price | money_without_currency }}</b></span>
             </div>
             <div class="variant-summary-row variant-summary-row-quantity justify-content-start d-flex flex-column col-4">
-              <span>Total no carrinho:</span>
+              <span>Total dos itens:</span>
               <span id="total-carrinho"><b>0</b></span>
             </div>
             <div class="variant-summary-total d-flex flex-column col-4">
-              <span>Valor total carrinho:</span>
+              <span>Valor total dos itens:</span>
               <span id="valor-total-carrinho">R$ 0,00</span>
               <span class="condicao-parcela">Em até {{ max_installments }}x de R$ <span id="parcela-carrinho">0,00</span> sem juros</span>
             </div>
@@ -357,7 +357,6 @@
   const maxInstallments = {{ max_installments }};
   const variantId = "{{ target_product.selected_or_first_available_variant.id }}";
   
-  // Tonalidades configuradas no schema
   const tonalidadeOptions = [
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
@@ -365,61 +364,33 @@
           { value: "{{ block.settings.value }}", label: "{{ block.settings.label }}" }{% unless forloop.last %},{% endunless %}
         {% endif %}
       {% endfor %}
-    {% else %}
-      { value: "G 35", label: "G 35" },
-      { value: "G 50", label: "G 50" },
-      { value: "G 70", label: "G 70" }
     {% endif %}
   ];
-  
-  // Debug imediato
-  console.log('Configuração inicial:', {
-    variantId,
-    basePrice,
-    maxInstallments,
-    product: '{{ target_product.title | default: "Não encontrado" }}'
-  });
 
   function addToCart(index) {
     const variant = document.querySelector(`[data-variant-index="${index}"]`);
     const button = document.getElementById(`add-btn-${index}`);
     
     if (!variant || button.disabled) return;
-    
-    // Pegar valores do item
+
     const largura = variant.querySelector('[data-option="largura"]').value;
     const altura = variant.querySelector('[data-option="altura"]').value;
     const quantidade = parseInt(variant.querySelector('[data-option="quantidade"]').value);
     const tonalidade = variant.querySelector('[data-option="tonalidade"]').value;
-    
-    // Calcular área e valor
+
     const larguraNum = parseFloat(largura.replace(/[^\d,]/g, '').replace(',', '.')) || 1.42;
     const alturaNum = parseFloat(altura.replace(/[^\d]/g, '')) / 100 || 0.5;
     const area = larguraNum * alturaNum;
     const itemValue = area * (basePrice / 100) * quantidade;
     
-    // Debug - verificar valores
-    console.log('Dados do produto:', {
-      largura: largura,
-      altura: altura,
-      quantidade: quantidade,
-      tonalidade: tonalidade,
-      area: area,
-      itemValue: itemValue,
-      variantId: variantId
-    });
-    
-    // Preencher formulário oculto com quantidade como 1 (sempre)
     document.getElementById('hidden-largura').value = largura;
     document.getElementById('hidden-altura').value = altura;
     document.getElementById('hidden-quantidade').value = quantidade;
     document.getElementById('hidden-tonalidade').value = tonalidade;
     
-    // Desabilitar botão e mostrar como adicionado
     button.disabled = true;
     button.textContent = 'Adicionando...';
     
-    // Submeter formulário via AJAX
     submitToCart(index, itemValue, quantidade);
   }
   
@@ -450,57 +421,208 @@
       return response.json();
     })
     .then(data => {
-      console.log('Item adicionado ao carrinho via AJAX:', data);
       handleCartSuccess(index, itemValue, quantidade);
+      
+      // Aguardar mais tempo para o Shopify processar completamente
+      setTimeout(() => {
+        fetchCartSectionsAndRender();
+      }, 800);
     })
     .catch(error => {
       console.error('Erro ao adicionar via AJAX, tentando método tradicional:', error);
       
-      // Fallback: usar formulário tradicional
       const fallbackForm = document.getElementById('fallback-form');
       document.getElementById('fallback-largura').value = formData.get('properties[Largura]');
       document.getElementById('fallback-altura').value = formData.get('properties[Altura]');
       document.getElementById('fallback-quantidade').value = formData.get('properties[Quantidade]');
       document.getElementById('fallback-tonalidade').value = formData.get('properties[Tonalidade]');
       
-      // Submeter formulário tradicional
       fallbackForm.submit();
       
-      // Simular sucesso para o UI (será confirmado no reload da página)
       handleCartSuccess(index, itemValue, quantidade);
     });
   }
   
   function handleCartSuccess(index, itemValue, quantidade) {
-    // Atualizar botão como sucesso
     const button = document.getElementById(`add-btn-${index}`);
     button.textContent = 'Adicionado';
     button.classList.add('added');
     
-    // Atualizar totais do carrinho
     cartItems += quantidade;
     cartTotal += itemValue;
     updateCartSummary();
 
-    // Adicionar nova linha automaticamente
     setTimeout(() => {
       addNewVariant();
     }, 500);
     
-    // Publicar evento para notificar outros componentes
+    // Disparar eventos para notificar outros componentes
     if (typeof window.dispatchEvent === 'function') {
       window.dispatchEvent(new CustomEvent('cart:updated'));
+      window.dispatchEvent(new CustomEvent('cart:refresh'));
     }
     
-    // Tentar atualizar badge do carrinho se existir
-    const cartCount = document.querySelector('.cart-count-bubble');
-    if (cartCount) {
-      const currentCount = parseInt(cartCount.textContent) || 0;
-      cartCount.textContent = currentCount + 1;
-    }
-    document.querySelector('cart-drawer').open();
+    // Atualizar badge do carrinho buscando dados reais
+    updateCartBadge();
   }
   
+  function updateCartBadge() {
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {        
+        // Tentar diferentes seletores para o badge
+        const badgeSelectors = [
+          '.cart-count-bubble',
+          '#cart-icon-bubble .cart-count',
+          '.cart-count',
+          '[data-cart-count]'
+        ];
+        
+        badgeSelectors.forEach(selector => {
+          const badge = document.querySelector(selector);
+          if (badge) {
+            badge.textContent = cart.item_count;
+            badge.style.display = cart.item_count > 0 ? 'block' : 'none';
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Erro ao atualizar badge:', error);
+      });
+  }
+  function fetchCartSectionsAndRender() {    
+    // Verificar múltiplas vezes se o carrinho foi atualizado
+    const checkCartAndRender = (attempts = 0, maxAttempts = 5) => {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {          
+          // Se o carrinho estiver vazio e ainda temos tentativas, aguardar mais
+          if (cart.item_count === 0 && attempts < maxAttempts) {
+            setTimeout(() => {
+              checkCartAndRender(attempts + 1, maxAttempts);
+            }, 500);
+            return;
+          }
+          
+          if (cart.item_count > 0) {            
+            const sectionRequests = [
+              fetch('/?section_id=cart-drawer').then(r => r.text()),
+              fetch('/?section_id=cart-icon-bubble').then(r => r.text())
+            ];
+            
+            Promise.all(sectionRequests)
+              .then(([cartDrawerHtml, cartIconHtml]) => {                
+                const cartDrawer = document.querySelector('cart-drawer');
+                if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
+                  cartDrawer.classList.remove('is-empty');
+                  
+                  const parsedState = {
+                    id: cart.items.length > 0 ? cart.items[cart.items.length - 1].variant_id : null,
+                    sections: {
+                      'cart-drawer': cartDrawerHtml,
+                      'cart-icon-bubble': cartIconHtml
+                    }
+                  };
+                  cartDrawer.renderContents(parsedState);
+                } else {
+                  openCartDrawerSimple();
+                }
+              })
+              .catch(error => {
+                console.error('Erro ao buscar seções:', error);
+                openCartDrawerSimple();
+              });
+          } else {
+            openCartDrawerSimple();
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar carrinho:', error);
+          openCartDrawerSimple();
+        });
+    };
+    
+    // Iniciar verificação
+    checkCartAndRender();
+  }
+  
+  function openCartDrawerSimple() {
+    const cartDrawer = document.querySelector('cart-drawer');
+    if (cartDrawer && typeof cartDrawer.open === 'function') {
+      // Remover classe is-empty se existir
+      cartDrawer.classList.remove('is-empty');
+      
+      // Verificar se há itens no carrinho antes de abrir
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {          
+          if (cart.item_count > 0) {
+            cartDrawer.classList.remove('is-empty');
+          }
+          
+          cartDrawer.open();
+        })
+        .catch(error => {
+          console.error('Erro na verificação final:', error);
+          cartDrawer.open();
+        });
+    } else {
+      // Fallback: simular clique no ícone do carrinho
+      const cartIcon = document.querySelector('#cart-icon-bubble');
+      if (cartIcon) {
+        cartIcon.click();
+      }
+    }
+  }
+  
+  function openCart() {
+    fetchCartSectionsAndRender();
+  }
+  
+  // Função alternativa para recarregar o cart drawer
+  function refreshCartDrawer() {    
+    // Método alternativo: forçar recarga do conteúdo
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        const cartDrawer = document.querySelector('cart-drawer');
+        if (cartDrawer && cart.item_count > 0) {
+          // Forçar remoção da classe is-empty
+          cartDrawer.classList.remove('is-empty');
+          
+          // Buscar HTML atualizado do cart drawer
+          fetch('/?section_id=cart-drawer')
+            .then(response => response.text())
+            .then(html => {
+              // Extrair apenas o conteúdo interno do drawer
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              const newDrawerContent = doc.querySelector('.drawer__inner');
+              
+              if (newDrawerContent) {
+                const currentDrawerInner = cartDrawer.querySelector('.drawer__inner');
+                if (currentDrawerInner) {
+                  currentDrawerInner.innerHTML = newDrawerContent.innerHTML;
+                }
+              }
+              
+              // Abrir depois de atualizar
+              cartDrawer.open();
+            })
+            .catch(error => {
+              console.error('Erro ao atualizar via DOM:', error);
+              cartDrawer.open();
+            });
+        } else {
+          openCartDrawerSimple();
+        }
+      })
+      .catch(error => {
+        console.error('Erro no refresh:', error);
+        openCartDrawerSimple();
+      });
+  }
+
   function addNewVariant() {
     variantCounter++;
     const variantList = document.getElementById('variant-list');
@@ -559,24 +681,6 @@
   // Inicialização e debug
   document.addEventListener('DOMContentLoaded', function() {
     updateCartSummary();
-    
-    // Debug: verificar se o produto existe
-    console.log('Produto configurado:', {
-      variantId: variantId,
-      basePrice: basePrice,
-      maxInstallments: maxInstallments
-    });
-    
-    // Verificar se as rotas do Shopify estão disponíveis
-    console.log('Rotas do Shopify:', {
-      cartAddUrl: '{{ routes.cart_add_url }}',
-      cartUrl: '{{ routes.cart_url }}'
-    });
-    
-    // Adicionar listener para eventos de carrinho
-    window.addEventListener('cart:updated', function() {
-      console.log('Carrinho atualizado!');
-    });
   });
   
 </script>

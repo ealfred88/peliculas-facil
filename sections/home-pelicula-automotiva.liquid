@@ -32,80 +32,277 @@
     text-overflow: ellipsis;
     padding: 16px 40px 16px 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
     appearance: none;
     background-image: url("{{ 'car-selector-arrow.svg' | asset_url }}");
     background-repeat: no-repeat;
     background-position: right 20px center;
   }
-  .select-item__marca-select:focus,
-  .select-item__modelo-select:focus {
+  .car-selector .select-item__marca-select:focus,
+  .car-selector .select-item__modelo-select:focus {
     outline: none;
     box-shadow: initial;
   }
-  .pitchbar-item {
+  .car-selector .pitchbar-item {
     padding: 0 8px;
   }
-  .pitchbar-item__wrapper {
+  .car-selector .pitchbar-item__wrapper {
     border: 1px solid #ccc;
     border-radius: 8px;
   }
-  .pitchbar-item__image {
+  .car-selector .pitchbar-item__image {
     border-right: 1px solid #ccc;
   }
-  .pitchbar-item__image img {
+  .car-selector .pitchbar-item__image img {
     max-height: 40px;
   }
-  .pitchbar-item:nth-of-type(1) .pitchbar-item__wrapper .pitchbar-item__image img {
+  .car-selector .pitchbar-item:nth-of-type(1) .pitchbar-item__wrapper .pitchbar-item__image img {
     transform: scale(1.2);
   }
-  .pitchbar-item__image,
-  .pitchbar-item__text {
+  .car-selector .pitchbar-item__image,
+  .car-selector .pitchbar-item__text {
     padding: 16px;
   }
-  .show-product {
+  .car-selector .show-product {
     overflow: hidden;
     max-height: 0;
     margin: 0;
     padding: 0;
     transition: max-height 0.5s ease-in-out;
   }
-  .show-product.active {
+  .car-selector .show-product.active {
     max-height: 1000px;
+  }
+  .car-selector .select-type {
+    color: #215AA8;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .car-selector .buscar-produto-btn-placa,
+  .car-selector .select-item__placa-input {
+    padding: 16px 40px 16px 16px;
+    height: 48px;
+  }
+  .car-selector .select-item__placa-input {
+    text-transform: uppercase;
+  }
+  .car-selector .select-item__placa-input::placeholder {
+    text-transform: initial;
+  }
+  .car-selector .buscar-produto-btn-placa {
+    background: black;
+    color: white;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+  }
+  .car-selector .buscar-produto-modelo {
+    background: black;
+    color: white;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    padding: 16px;
+    height: 48px;
+  }
+  .car-selector .buscar-produto-modelo {}
+  .car-selector .select-item__placa-input {
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #ccc;
+  }
+  .car-selector .select-item__placa-input:focus,
+  .car-selector .buscar-produto-btn-placa:focus {
+    outline: none;
+    box-shadow: initial;
+  }
+  .car-selector .select-type:hover {
+    text-decoration: none;
+  }
+  .car-selector .select-type__container {
+    display: none;
+  }
+  .car-selector .select-type__modelo {
+    position: relative;
+  }
+  .car-selector .select-type__modelo .select-type__model--tooltip {
+    position: absolute;
+    top: -28px;
+    font-size: 14px;
+    left: 0;
+    z-index: 1;
+    color: #215AA8;
+    transition: all 0.8s ease;
+    opacity: 0;
+    user-select: none;
+  }
+  .car-selector .select-type__modelo .select-type__model--tooltip.active {
+    opacity: 1;
+  }
+  .car-selector .select-type__modelo.active,
+  .car-selector .select-type__placa.active {
+    display: flex !important;
+  }
+
+  .not-my-vehicle {
+    color: #1F1F1F;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+    display: none
+  }
+  .not-my-vehicle.active {
+    display: block;
+  }
+  .not-my-vehicle:hover {
+    text-decoration: none;
+  }
+  .not-found-vehicle {
+    margin-top: 32px;
+    background: #fff2f2;
+    height: 56px;
+    max-height: 56px;
+    padding: 0 16px;
+    display: none;
+    border-radius: 8px;
+  }
+  .not-found-vehicle .text {
+    gap: 8px;
+  }
+  .not-found-vehicle.active {
+    display: flex;
+  }
+  .not-found-vehicle-text {
+    color: #1F1F1F;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .not-found-vehicle-button {
+    color: #215AA8;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .car-selector .loading {
+    display: none;
+    margin-top: 32px;
+    opacity: 1;
+    padding: 0 8px;
+    height: 56px;
+    max-height: 56px;
+    background: linear-gradient(90deg, #e7e7e7 25%, #f0f0f0 50%, #e4e4e4 75%);
+    animation: skeleton 2s infinite;
+    background-size: 200% 100%;
+    border-radius: 8px;
+  }
+  .car-selector .loading.active {
+    display: block;
+  }
+  @keyframes skeleton {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  @media (max-width: 992px) {
+    .car-selector__title {
+      font-size: 32px;
+    }
+    .car-selector {
+      padding: 24px 32px;
+    }
+    .car-selector .pitchbar {
+      gap: 12px;
+    }
+    .car-selector__subtitle {
+      font-size: 16px;
+    }
+    .not-found-vehicle {
+      height: initial;
+      max-height: initial;
+    }
+    .not-found-vehicle .text {
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px 0;
+    }
   }
 {%- endstyle -%}
 
-<section class="container car-selector">
+<div class="container car-selector">
   <div class="row select-item mb-5">
-    <div class="col-6">
+    <div class="col-12 col-lg-6 mb-5 mb-lg-0">
       <h2 class="car-selector__title">Encontre a película ideal</h2>
       <p class="car-selector__subtitle">Navegue nas opções e encontre o produto exato para a sua necessidade.</p>
     </div>
-    <div id="car-selector" class="col-6 d-flex flex-wrap">
-      <div class="col-6 marca d-flex align-items-center pe-2">
-        <label class="d-none">Marca:</label>
-        <select id="select-marca" class="select-item__marca-select">
-          <option value="">Selecione uma marca</option>
-          {% for collection in collections %}
-            {% if collection.metafields.custom.marca and collection.handle %}
-              <option value="{{ collection.handle }}">{{ collection.title }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
+    <div id="car-selector" class="col-12 col-lg-6 d-flex flex-wrap align-items-center">
+      <div class="col-12 flex-wrap align-items-center select-type__container select-type__modelo active">
+        <span class="select-type__model--tooltip">Pesquise pelo modelo do veículo</span>
+        <div class="col-12 col-lg-5 marca d-flex align-items-center pe-2">
+          <label class="d-none">Marca:</label>
+          <select id="select-marca" class="select-item__marca-select">
+            <option value="">Selecione uma marca</option>
+            {% for collection in collections %}
+              {% if collection.metafields.custom.marca and collection.handle %}
+                <option value="{{ collection.handle }}">{{ collection.title }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12 col-lg-5 modelo d-flex align-items-center ps-lg-2 pe-lg-3 mt-3 mt-lg-0">
+          <label class="d-none">Modelo:</label>
+          <select
+            id="select-modelo"
+            class="select-item__modelo-select"
+            disabled>
+            <option value="">Selecione um modelo</option>
+          </select>
+        </div>
+        <button
+          id="buscar-produto"
+          class="buscar-produto-modelo col-12 col-lg-2 mt-3 mt-lg-0">
+          Buscar
+        </button>
       </div>
-      <div class="col-6 modelo d-flex align-items-center ps-2">
-        <label class="d-none">Modelo:</label>
-        <select
-          id="select-modelo"
-          class="select-item__modelo-select"
-          disabled>
-          <option value="">Selecione um modelo</option>
-        </select>
+      <div class="col-12 flex-wrap align-items-center select-type__container select-type__placa">
+        <input
+          type="text"
+          id="placa-veiculo"
+          class="select-item__placa-input col-8"
+          placeholder="Digite a placa do veículo" />
+        <button
+          id="buscar-produto-btn-placa"
+          class="buscar-produto-btn-placa col-4">
+          Buscar
+        </button>
+      </div>
+      <div class="col-12 d-flex justify-content-center justify-content-lg-end align-items-center mt-3 mt-lg-0">
+        <span
+          role="button"
+          id="select-type"
+          class="select-type modelo">
+          Selecione pela placa do veículo
+        </span>
       </div>
     </div>
   </div>
   <div class="row pitchbar">
-    <div class="col-3 pitchbar-item d-flex">
+    <div class="col-12 col-lg-3 pitchbar-item d-flex">
       <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
         <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
           <img
@@ -119,7 +316,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 pitchbar-item d-flex">
+    <div class="col-12 col-lg-3 pitchbar-item d-flex">
       <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
         <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
           <img
@@ -134,7 +331,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 pitchbar-item d-flex">
+    <div class="col-12 col-lg-3 pitchbar-item d-flex">
       <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
         <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
           <img
@@ -149,7 +346,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 pitchbar-item d-flex">
+    <div class="col-12 col-lg-3 pitchbar-item d-flex">
       <div class="pitchbar-item__wrapper d-flex justify-content-center align-items-center flex-grow-1">
         <div class="col-4 pitchbar-item__image d-flex justify-content-center align-items-center">
           <img
@@ -165,198 +362,21 @@
       </div>
     </div>
   </div>
-
+  <div class="row loading"></div>
+  <div class="row not-found-vehicle">
+    <div class="text d-flex justify-content-center align-items-center">
+      <span class="not-found-vehicle-text">Veículo não encontrado.</span>
+      <span class="not-found-vehicle-button">Encontrar por marca e modelo</span>
+    </div>
+  </div>
   <div id="show-product" class="show-product">
     <!-- O conteúdo do quick-buy será inserido aqui via JavaScript -->
   </div>
 
 
-</section>
+</div>
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // loadQuickBuySnippet("pelicula-insulfilm-nano-ceramica-automotiva-termica-kia-cerato");
-    const selectMarca = document.getElementById("select-marca");
-    const selectModelo = document.getElementById("select-modelo");
-    const produtoInfo = document.getElementById("produto-info");
-    
-    selectMarca.addEventListener("change", async () => {
-      const handle = selectMarca.value.toLowerCase();
-      if (!handle) return;
-    
-      selectModelo.innerHTML = '<option value="">Carregando modelos...</option>';
-      selectModelo.disabled = true;
-    
-      const res = await fetch(`/collections/${handle}/products.json`);
-      let data = await res.json();
-      console.log(data);
-      if (!data.products.length) {
-        selectModelo.innerHTML = '<option value="">Nenhum modelo encontrado</option>';
-        return;
-      }
-      
-      selectModelo.innerHTML = '<option value="">Selecione um modelo</option>';
-      data.products.forEach(prod => {
-        selectModelo.innerHTML += `<option value="${prod.handle}">${prod.title}</option>`;
-      });
-    
-      selectModelo.disabled = false;
-      produtoInfo.style.display = "none";
-    });
-    
-    selectModelo.addEventListener("change", async () => {
-      const handle = selectModelo.value;
-      const showProduct = document.getElementById('show-product');
-      if (showProduct.classList.contains('active')) {
-        showProduct.classList.remove('active');
-      }
-      setTimeout(() => {
-        showProduct.classList.add('active');
-      }, 1000);
-      if (!handle) return;
-    
-      const storefrontAccessToken = 'ad4a9be2a38ab8b8fb23c4274d2d5e7b';
-      const shop = 'peliculas-facil.myshopify.com';
-  
-      const query = `
-      {
-        product(handle: "${handle}") {
-          id
-          handle
-          title
-          description
-          descriptionHtml
-          vendor
-          productType
-          tags
-          availableForSale
-          totalInventory
-          createdAt
-          updatedAt
-          metafield: metafield(namespace: "custom", key: "modelo_do_veiculo") {
-            value
-          }
-          publishedAt
-          onlineStoreUrl
-          featuredImage {
-            id
-            url
-            altText
-            width
-            height
-          }
-          images(first: 10) {
-            edges {
-              node {
-                id
-                url
-                altText
-                width
-                height
-              }
-            }
-          }
-          variants(first: 10) {
-            edges {
-              node {
-                id
-                title
-                availableForSale
-                currentlyNotInStock
-                quantityAvailable
-                price {
-                  amount
-                  currencyCode
-                }
-                compareAtPrice {
-                  amount
-                  currencyCode
-                }
-                weight
-                weightUnit
-                requiresShipping
-                taxable
-                sku
-                barcode
-                selectedOptions {
-                  name
-                  value
-                }
-                image {
-                  id
-                  url
-                  altText
-                }
-              }
-            }
-          }
-          options {
-            id
-            name
-            values
-          }
-          collections(first: 5) {
-            edges {
-              node {
-                id
-                title
-                handle
-              }
-            }
-          }
-          seo {
-            title
-            description
-          }
-        }
-      }
-      `;
-  
-      fetch(`https://${shop}/api/2023-07/graphql.json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": storefrontAccessToken
-      },
-      body: JSON.stringify({ query })
-      })
-      .then(res => res.json())
-      .then(data => {
-        // console.log("Resposta completa:", data);
-        
-        if (data.errors) {
-          console.error("Erros GraphQL:", data.errors);
-          return;
-        }
-        
-        const product = data.data.product;
-        if (!product) {
-          console.error("Produto não encontrado");
-          return;
-        }
-                
-        loadQuickBuySnippet(product.handle);
-      })
-      .catch(error => {
-        console.error("Erro ao buscar dados do produto:", error);
-      });
-    });
-    
-    async function loadQuickBuySnippet(productHandle) {
-      try {
-        const response = await fetch(`/products/${productHandle}?sections=home-pelicula-automotiva-produto`);
-        const data = await response.json();
-        if (data['home-pelicula-automotiva-produto']) {
-          document.getElementById('show-product').innerHTML = data['home-pelicula-automotiva-produto'];
-          document.getElementById('show-product').classList.add('active');
-        }
-      } catch (error) {
-        console.error('Erro ao carregar quick-buy:', error);
-      }
-    }
-  });
-</script>
+<script src="{{ 'pelicula-automotiva.js' | asset_url }}" defer></script>
 
 {% schema %}
   {

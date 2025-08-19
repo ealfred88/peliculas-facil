@@ -32,15 +32,27 @@
     color: #fff;
   }
   .product__img-wrapper {
-    height: 500px;
     object-fit: cover;
+  }
+  @media (max-width: 992px) {
+    .product__title {
+      font-size: 24px;
+    }
+    .ver-detalhes {
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+    .product__img-wrapper {
+      height: 346px;
+      margin: 0 auto
+    }
   }
 {%- endstyle -%}
 
 {% if product %}
   <div class="quick-buy-section pt-5" id="quick-buy-{{ product.id }}">
     <div class="row quick-buy-content">
-      <div class="col-5 product__img-wrapper">
+      <div class="col-12 col-lg-5 product__img-wrapper">
         <img
           src="{{ product.featured_image | img_url: 'master' }}"
           alt="{{ product.title }}"
@@ -48,7 +60,7 @@
           width="100%"
           height="auto"/>
       </div>
-      <div class="col-7 px-5 product__info d-flex flex-column justify-content-center">
+      <div class="col-12 col-lg-7 px-5 product__info d-flex flex-column justify-content-center align-items-center align-items-lg-start">
         <h3 class="product__title mb-5">{{ product.title }}</h3>
         {% comment %} <div class="product-price">
             <span class="price">
@@ -92,6 +104,7 @@
         <a href="{{ product.url }}" class="ver-detalhes mt-3">
           Ver mais detalhes
         </a>
+        <span class="not-my-vehicle">Não é o meu veículo</span>
       </div>
     </div>
   </div>

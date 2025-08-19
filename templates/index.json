@@ -75,6 +75,50 @@
     },
     "home_pelicula_residencial_k3CRVK": {
       "type": "home-pelicula-residencial",
+      "blocks": {
+        "tonalidade_f8kaJK": {
+          "type": "tonalidade",
+          "settings": {
+            "value": "g-5",
+            "label": "G 5"
+          }
+        },
+        "tonalidade_RKEKxR": {
+          "type": "tonalidade",
+          "settings": {
+            "value": "g20",
+            "label": "G 20"
+          }
+        },
+        "tonalidade_UgJFpc": {
+          "type": "tonalidade",
+          "settings": {
+            "value": "g35",
+            "label": "G 35"
+          }
+        },
+        "tonalidade_a7Vyd4": {
+          "type": "tonalidade",
+          "settings": {
+            "value": "g50",
+            "label": "G 50"
+          }
+        },
+        "tonalidade_UgKheH": {
+          "type": "tonalidade",
+          "settings": {
+            "value": "g70",
+            "label": "G 70"
+          }
+        }
+      },
+      "block_order": [
+        "tonalidade_f8kaJK",
+        "tonalidade_RKEKxR",
+        "tonalidade_UgJFpc",
+        "tonalidade_a7Vyd4",
+        "tonalidade_UgKheH"
+      ],
       "name": "Home Película Residencial",
       "settings": {
         "featured_product": "pelicula-filme-nano-ceramica-automotiva-termica-conversivel-coupe-kit-apenas-parabrisa",
